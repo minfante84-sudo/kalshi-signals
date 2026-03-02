@@ -5,6 +5,7 @@ import { MarketTable } from "@/components/market-table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Activity } from "lucide-react";
 
+export const dynamic = "force-dynamic";
 export const revalidate = 30;
 
 export default async function SignalsDashboard() {
