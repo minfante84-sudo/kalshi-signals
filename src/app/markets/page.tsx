@@ -13,12 +13,36 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { KalshiMarket } from "@/lib/kalshi";
-import { formatDollars, formatPercent } from "@/lib/signals";
+import { formatNumber, formatPercent } from "@/lib/signals";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 
+interface RawMarket {
+  ticker: string;
+  event_ticker: string;
+  title: string;
+  status: string;
+  last_price: number | string;
+  previous_price: number | string;
+  last_price_dollars: number | string;
+  previous_price_dollars: number | string;
+  volume: number | string;
+  volume_24h: number | string;
+  volume_24h_fp: number | string;
+  open_interest: number | string;
+  open_interest_fp: number | string;
+}
+
+function toNum(val: unknown): number {
+  if (typeof val === "number") return val;
+  if (typeof val === "string") {
+    const n = parseFloat(val);
+    return isNaN(n) ? 0 : n;
+  }
+  return 0;
+}
+
 export default function MarketsPage() {
-  const [markets, setMarkets] = useState<KalshiMarket[]>([]);
+  const [markets, setMarkets] = useState<RawMarket[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
@@ -29,10 +53,7 @@ export default function MarketsPage() {
     setLoading(true);
     setError(null);
     try {
-      const params = new URLSearchParams({
-        limit: "50",
-        status: "open",
-      });
+      const params = new URLSearchParams({ limit: "50" });
       if (cursorParam) params.set("cursor", cursorParam);
 
       const res = await fetch(`/api/kalshi/markets?${params}`);
@@ -112,19 +133,18 @@ export default function MarketsPage() {
                   <TableHead className="w-[350px]">Market</TableHead>
                   <TableHead>Price</TableHead>
                   <TableHead>24h Change</TableHead>
-                  <TableHead>Volume 24h</TableHead>
+                  <TableHead>Volume</TableHead>
                   <TableHead>Open Interest</TableHead>
                   <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filtered.map((market) => {
-                  const prevPrice =
-                    market.previous_price_dollars || market.last_price_dollars;
+                  const lastPrice = toNum(market.last_price);
+                  const prevPrice = toNum(market.previous_price) || lastPrice;
                   const changePct =
                     prevPrice > 0
-                      ? ((market.last_price_dollars - prevPrice) / prevPrice) *
-                        100
+                      ? ((lastPrice - prevPrice) / prevPrice) * 100
                       : 0;
                   const changeColor =
                     changePct > 0
@@ -132,6 +152,9 @@ export default function MarketsPage() {
                       : changePct < 0
                         ? "text-red-500"
                         : "text-muted-foreground";
+
+                  const vol = toNum(market.volume_24h) || toNum(market.volume_24h_fp) || toNum(market.volume);
+                  const oi = toNum(market.open_interest) || toNum(market.open_interest_fp);
 
                   return (
                     <TableRow
@@ -149,16 +172,16 @@ export default function MarketsPage() {
                         </Link>
                       </TableCell>
                       <TableCell className="font-mono">
-                        {(market.last_price_dollars * 100).toFixed(0)}&cent;
+                        {lastPrice}&cent;
                       </TableCell>
                       <TableCell className={`font-mono ${changeColor}`}>
                         {formatPercent(changePct)}
                       </TableCell>
                       <TableCell className="font-mono">
-                        {formatDollars(market.volume_24h_fp)}
+                        {formatNumber(vol)}
                       </TableCell>
                       <TableCell className="font-mono">
-                        {formatDollars(market.open_interest_fp)}
+                        {formatNumber(oi)}
                       </TableCell>
                       <TableCell>
                         <Badge variant="outline" className="text-xs">

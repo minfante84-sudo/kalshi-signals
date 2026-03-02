@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { MarketSignal, formatDollars, formatPercent } from "@/lib/signals";
+import { MarketSignal, formatNumber, formatPercent } from "@/lib/signals";
 import { ArrowUpDown } from "lucide-react";
 
 type SortKey = "signalScore" | "priceChangePct" | "volume24h" | "openInterest";
@@ -85,16 +85,16 @@ export function MarketTable({ signals }: { signals: MarketSignal[] }) {
                   </Link>
                 </TableCell>
                 <TableCell className="font-mono">
-                  {(market.last_price_dollars * 100).toFixed(0)}&cent;
+                  {market.last_price}&cent;
                 </TableCell>
                 <TableCell className={`font-mono ${priceChangeColor}`}>
                   {formatPercent(priceChangePct)}
                 </TableCell>
                 <TableCell className="font-mono">
-                  {formatDollars(signal.volume24h)}
+                  {formatNumber(signal.volume24h)}
                 </TableCell>
                 <TableCell className="font-mono">
-                  {formatDollars(signal.openInterest)}
+                  {formatNumber(signal.openInterest)}
                 </TableCell>
                 <TableCell>
                   <Badge className={strengthColor} variant="secondary">

@@ -12,7 +12,7 @@ export default async function SignalsDashboard() {
   let error: string | null = null;
 
   try {
-    const { markets } = await getMarkets({ limit: 200, status: "open" });
+    const { markets } = await getMarkets({ limit: 200 });
     signals = computeSignals(markets);
   } catch (e) {
     error = e instanceof Error ? e.message : "Failed to load market data";

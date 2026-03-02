@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getMarket, getOrderbook, getTrades } from "@/lib/kalshi";
-import { formatDollars, formatPercent } from "@/lib/signals";
+import { formatNumber, formatPercent } from "@/lib/signals";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -33,8 +33,8 @@ export default async function MarketDetailPage({
     notFound();
   }
 
-  const prevPrice = market.previous_price_dollars || market.last_price_dollars;
-  const priceChange = market.last_price_dollars - prevPrice;
+  const prevPrice = market.previous_price || market.last_price;
+  const priceChange = market.last_price - prevPrice;
   const priceChangePct = prevPrice > 0 ? (priceChange / prevPrice) * 100 : 0;
   const isUp = priceChangePct > 0;
   const isDown = priceChangePct < 0;
@@ -70,7 +70,7 @@ export default async function MarketDetailPage({
           <CardContent>
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-bold">
-                {(market.last_price_dollars * 100).toFixed(0)}&cent;
+                {market.last_price}&cent;
               </span>
               <span
                 className={`flex items-center text-sm font-medium ${isUp ? "text-green-500" : isDown ? "text-red-500" : "text-muted-foreground"}`}
@@ -91,13 +91,10 @@ export default async function MarketDetailPage({
           </CardHeader>
           <CardContent>
             <span className="text-3xl font-bold">
-              {(market.yes_bid_dollars * 100).toFixed(0)} /{" "}
-              {(market.yes_ask_dollars * 100).toFixed(0)}
+              {market.yes_bid} / {market.yes_ask}
             </span>
             <p className="mt-1 text-xs text-muted-foreground">
-              Spread:{" "}
-              {((market.yes_ask_dollars - market.yes_bid_dollars) * 100).toFixed(0)}
-              &cent;
+              Spread: {market.yes_ask - market.yes_bid}&cent;
             </p>
           </CardContent>
         </Card>
@@ -110,10 +107,10 @@ export default async function MarketDetailPage({
           </CardHeader>
           <CardContent>
             <span className="text-3xl font-bold">
-              {formatDollars(market.volume_24h_fp)}
+              {formatNumber(market.volume_24h)}
             </span>
             <p className="mt-1 text-xs text-muted-foreground">
-              All-time: {formatDollars(market.volume_fp)}
+              All-time: {formatNumber(market.volume)}
             </p>
           </CardContent>
         </Card>
@@ -126,7 +123,7 @@ export default async function MarketDetailPage({
           </CardHeader>
           <CardContent>
             <span className="text-3xl font-bold">
-              {formatDollars(market.open_interest_fp)}
+              {formatNumber(market.open_interest)}
             </span>
           </CardContent>
         </Card>

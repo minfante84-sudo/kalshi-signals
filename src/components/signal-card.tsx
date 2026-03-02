@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MarketSignal, formatDollars, formatPercent } from "@/lib/signals";
+import { MarketSignal, formatNumber, formatPercent } from "@/lib/signals";
 import { ArrowUpRight, ArrowDownRight, Minus, TrendingUp, BarChart3 } from "lucide-react";
 
 export function SignalCard({ signal }: { signal: MarketSignal }) {
@@ -49,7 +49,7 @@ export function SignalCard({ signal }: { signal: MarketSignal }) {
             <div>
               <p className="text-xs text-muted-foreground">Price</p>
               <p className="text-lg font-semibold">
-                {(market.last_price_dollars * 100).toFixed(0)}&cent;
+                {market.last_price}&cent;
               </p>
             </div>
             <div>
@@ -69,11 +69,11 @@ export function SignalCard({ signal }: { signal: MarketSignal }) {
           <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <BarChart3 className="h-3 w-3" />
-              Vol: {formatDollars(volume24h)}
+              Vol: {formatNumber(volume24h)}
             </span>
             <span className="flex items-center gap-1">
               <TrendingUp className="h-3 w-3" />
-              OI: {formatDollars(openInterest)}
+              OI: {formatNumber(openInterest)}
             </span>
           </div>
         </CardContent>
