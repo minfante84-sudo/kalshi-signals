@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 
 const BASE_URL = "https://api.elections.kalshi.com/trade-api/v2";
 
+function getAuthHeaders(): Record<string, string> {
+  const headers: Record<string, string> = { Accept: "application/json" };
+  const apiKey = process.env.KALSHI_API_KEY;
+  if (apiKey) {
+    headers["Authorization"] = `Bearer ${apiKey}`;
+  }
+  return headers;
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
@@ -13,7 +22,7 @@ export async function GET(
 
   try {
     const res = await fetch(url, {
-      headers: { Accept: "application/json" },
+      headers: getAuthHeaders(),
       next: { revalidate: 15 },
     });
 

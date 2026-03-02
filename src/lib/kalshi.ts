@@ -118,6 +118,15 @@ export interface KalshiTrade {
 
 // --- API Functions ---
 
+function getAuthHeaders(): Record<string, string> {
+  const headers: Record<string, string> = { Accept: "application/json" };
+  const apiKey = process.env.KALSHI_API_KEY;
+  if (apiKey) {
+    headers["Authorization"] = `Bearer ${apiKey}`;
+  }
+  return headers;
+}
+
 async function kalshiFetch<T>(
   path: string,
   params?: Record<string, string | number | undefined>,
@@ -132,7 +141,7 @@ async function kalshiFetch<T>(
 
   const res = await fetch(url.toString(), {
     next: { revalidate },
-    headers: { Accept: "application/json" },
+    headers: getAuthHeaders(),
   });
 
   if (!res.ok) {
@@ -160,6 +169,25 @@ export async function getMarkets(params?: {
     markets: (raw.markets || []).map(normalizeMarket),
     cursor: raw.cursor,
   };
+}
+
+export async function getAllMarkets(params?: {
+  status?: string;
+}): Promise<KalshiMarket[]> {
+  const allMarkets: KalshiMarket[] = [];
+  let cursor: string | undefined;
+
+  do {
+    const result = await getMarkets({
+      limit: 200,
+      cursor,
+      status: params?.status,
+    });
+    allMarkets.push(...result.markets);
+    cursor = result.cursor || undefined;
+  } while (cursor);
+
+  return allMarkets;
 }
 
 export async function getMarket(ticker: string): Promise<{ market: KalshiMarket }> {

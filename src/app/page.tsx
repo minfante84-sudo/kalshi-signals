@@ -1,4 +1,4 @@
-import { getMarkets } from "@/lib/kalshi";
+import { getAllMarkets } from "@/lib/kalshi";
 import { computeSignals } from "@/lib/signals";
 import { SignalCard } from "@/components/signal-card";
 import { MarketTable } from "@/components/market-table";
@@ -12,7 +12,7 @@ export default async function SignalsDashboard() {
   let error: string | null = null;
 
   try {
-    const { markets } = await getMarkets({ limit: 200 });
+    const markets = await getAllMarkets({ status: "open" });
     signals = computeSignals(markets);
   } catch (e) {
     error = e instanceof Error ? e.message : "Failed to load market data";
