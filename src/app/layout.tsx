@@ -44,12 +44,21 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Kalshi Signals",
     type: "website",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Kalshi Signals — Largest Prediction Market Trades in Real Time",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Kalshi Signals — Largest Prediction Market Trades",
     description:
       "Track the biggest single trades happening across Kalshi prediction markets in real time.",
+    images: [`${siteUrl}/opengraph-image`],
   },
   robots: {
     index: true,
