@@ -6,13 +6,14 @@ const BASE_URL = "https://api.elections.kalshi.com/trade-api/v2";
 function signRequest(method: string, path: string, timestamp: number): Record<string, string> {
   const headers: Record<string, string> = { Accept: "application/json" };
   const apiKey = process.env.KALSHI_API_KEY;
-  const privateKeyPem = process.env.KALSHI_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const privateKeyPem = process.env.KALSHI_PRIVATE_KEY?.replace(/\\\\n/g, "\n").replace(/\\n/g, "\n");
 
   if (!apiKey || !privateKeyPem) return headers;
 
+  const key = crypto.createPrivateKey(privateKeyPem);
   const message = `${timestamp}${method}/trade-api/v2${path}`;
   const signature = crypto.sign("sha256", Buffer.from(message), {
-    key: privateKeyPem,
+    key,
     padding: crypto.constants.RSA_PKCS1_PSS_PADDING,
     saltLength: crypto.constants.RSA_PSS_SALTLEN_DIGEST,
   });
