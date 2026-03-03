@@ -16,12 +16,6 @@ export function Navbar() {
           >
             Signals
           </Link>
-          <Link
-            href="/markets"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Markets
-          </Link>
         </nav>
       </div>
     </header>

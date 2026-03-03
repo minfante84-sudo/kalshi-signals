@@ -1,71 +1,77 @@
-import { KalshiMarket } from "./kalshi";
+import { KalshiMarket, KalshiTrade } from "./kalshi";
 
 export interface MarketSignal {
   market: KalshiMarket;
-  priceChange: number; // absolute price change in cents
-  priceChangePct: number; // percentage change
+  largestTrade: number; // dollar value of the biggest single trade
+  largestTradeContracts: number; // contract count of the biggest single trade
+  largestTradeSide: "yes" | "no"; // which side the largest trade was on
+  priceChange: number;
+  priceChangePct: number;
   volume24h: number;
   openInterest: number;
-  signalScore: number; // composite score
-  signalType: "bullish" | "bearish" | "neutral";
-  signalStrength: "strong" | "moderate" | "weak";
+  signalStrength: "high" | "moderate" | "low";
 }
 
-export function computeSignals(markets: KalshiMarket[]): MarketSignal[] {
-  // Filter to markets with meaningful activity (volume > 0 OR has a last price)
-  const active = markets.filter(
-    (m) => (m.volume > 0 || m.volume_24h > 0) && m.last_price > 0
-  );
+/** Compute the largest single trade per ticker from raw trades. */
+export function rankTradesByTicker(
+  trades: KalshiTrade[]
+): Map<string, { dollars: number; contracts: number; side: "yes" | "no" }> {
+  const map = new Map<string, { dollars: number; contracts: number; side: "yes" | "no" }>();
 
-  if (active.length === 0) return [];
+  for (const trade of trades) {
+    const priceCents =
+      trade.taker_side === "yes" ? trade.yes_price : trade.no_price;
+    const dollars = trade.count * (priceCents / 100);
+    const existing = map.get(trade.ticker);
+    if (!existing || dollars > existing.dollars) {
+      map.set(trade.ticker, { dollars, contracts: trade.count, side: trade.taker_side as "yes" | "no" });
+    }
+  }
 
-  // Calculate volume percentiles for relative scoring
-  const volumes = active.map((m) => m.volume_24h || m.volume).sort((a, b) => a - b);
-  const getVolumePercentile = (vol: number) => {
-    if (volumes.length <= 1) return 1;
-    const idx = volumes.findIndex((v) => v >= vol);
-    return idx / volumes.length;
-  };
+  return map;
+}
 
-  const signals: MarketSignal[] = active.map((market) => {
+/** Build signals from enriched markets + pre-ranked trade data. */
+export function buildSignals(
+  markets: KalshiMarket[],
+  tradeRanks: Map<string, { dollars: number; contracts: number; side: "yes" | "no" }>
+): MarketSignal[] {
+  const signals: MarketSignal[] = [];
+
+  for (const market of markets) {
+    const largest = tradeRanks.get(market.ticker);
+    if (!largest || market.last_price <= 0) continue;
+    // Exclude parlays with more than 4 legs
+    if (market.title.split(",").length > 4) continue;
+
     const lastPrice = market.last_price;
     const prevPrice = market.previous_price || lastPrice;
     const priceChange = lastPrice - prevPrice;
-    const priceChangePct = prevPrice > 0 ? (priceChange / prevPrice) * 100 : 0;
-
+    const priceChangePct =
+      prevPrice > 0 ? (priceChange / prevPrice) * 100 : 0;
     const vol = market.volume_24h || market.volume;
 
-    // Volume score: percentile ranking (0-1)
-    const volumeScore = getVolumePercentile(vol);
-
-    // Price move score: normalized absolute change (0-1)
-    const priceScore = Math.min(Math.abs(priceChangePct) / 30, 1);
-
-    // Composite signal score (0-100)
-    const signalScore = Math.round((volumeScore * 40 + priceScore * 60) * 100) / 100;
-
-    // Determine signal type
-    const signalType: MarketSignal["signalType"] =
-      priceChangePct > 2 ? "bullish" : priceChangePct < -2 ? "bearish" : "neutral";
-
-    // Determine signal strength
     const signalStrength: MarketSignal["signalStrength"] =
-      signalScore > 70 ? "strong" : signalScore > 40 ? "moderate" : "weak";
+      largest.dollars >= 1000
+        ? "high"
+        : largest.dollars >= 100
+          ? "moderate"
+          : "low";
 
-    return {
+    signals.push({
       market,
+      largestTrade: largest.dollars,
+      largestTradeContracts: largest.contracts,
+      largestTradeSide: largest.side,
       priceChange,
       priceChangePct,
       volume24h: vol,
       openInterest: market.open_interest,
-      signalScore,
-      signalType,
       signalStrength,
-    };
-  });
+    });
+  }
 
-  // Sort by signal score descending
-  return signals.sort((a, b) => b.signalScore - a.signalScore);
+  return signals.sort((a, b) => b.largestTrade - a.largestTrade);
 }
 
 export function formatDollars(value: number): string {

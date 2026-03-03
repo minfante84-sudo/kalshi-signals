@@ -36,6 +36,8 @@ export interface KalshiMarket {
   created_time: string;
   expected_expiration_time: string;
   strike_type: string;
+  subtitle: string;
+  rules_primary: string;
 }
 
 // Raw market from API (all numeric fields are strings)
@@ -84,6 +86,8 @@ function normalizeMarket(raw: RawKalshiMarket): KalshiMarket {
     created_time: String(raw.created_time ?? ""),
     expected_expiration_time: String(raw.expected_expiration_time ?? ""),
     strike_type: String(raw.strike_type ?? ""),
+    subtitle: String(raw.subtitle ?? ""),
+    rules_primary: String(raw.rules_primary ?? ""),
   };
 }
 
@@ -162,7 +166,7 @@ async function kalshiFetch<T>(
   });
 
   if (!res.ok) {
-    throw new Error(`Kalshi API error: ${res.status} ${res.statusText}`);
+    throw new Error(`Kalshi API error: ${res.status} ${res.statusText} (${path})`);
   }
 
   return res.json();
@@ -190,9 +194,12 @@ export async function getMarkets(params?: {
 
 export async function getAllMarkets(params?: {
   status?: string;
+  maxPages?: number;
 }): Promise<KalshiMarket[]> {
   const allMarkets: KalshiMarket[] = [];
   let cursor: string | undefined;
+  let pages = 0;
+  const maxPages = params?.maxPages ?? 50;
 
   do {
     const result = await getMarkets({
@@ -202,7 +209,11 @@ export async function getAllMarkets(params?: {
     });
     allMarkets.push(...result.markets);
     cursor = result.cursor || undefined;
-  } while (cursor);
+    pages++;
+    if (cursor && pages < maxPages) {
+      await new Promise((r) => setTimeout(r, 200));
+    }
+  } while (cursor && pages < maxPages);
 
   return allMarkets;
 }
@@ -210,6 +221,10 @@ export async function getAllMarkets(params?: {
 export async function getMarket(ticker: string): Promise<{ market: KalshiMarket }> {
   const raw = await kalshiFetch<{ market: RawKalshiMarket }>(`/markets/${ticker}`);
   return { market: normalizeMarket(raw.market) };
+}
+
+export async function getSeries(seriesTicker: string): Promise<{ series: { ticker: string; title: string; category: string } }> {
+  return kalshiFetch(`/series/${seriesTicker}`);
 }
 
 export async function getOrderbook(ticker: string): Promise<{ orderbook: KalshiOrderbook }> {
@@ -221,11 +236,32 @@ export async function getTrades(params?: {
   limit?: number;
   cursor?: string;
 }): Promise<{ trades: KalshiTrade[]; cursor: string }> {
-  return kalshiFetch("/trades", {
+  return kalshiFetch("/markets/trades", {
     ticker: params?.ticker,
     limit: params?.limit ?? 50,
     cursor: params?.cursor,
   });
+}
+
+export async function getAllTrades(params?: {
+  maxPages?: number;
+}): Promise<KalshiTrade[]> {
+  const allTrades: KalshiTrade[] = [];
+  let cursor: string | undefined;
+  let pages = 0;
+  const maxPages = params?.maxPages ?? 10;
+
+  do {
+    const result = await getTrades({ limit: 1000, cursor });
+    allTrades.push(...result.trades);
+    cursor = result.cursor || undefined;
+    pages++;
+    if (cursor && pages < maxPages) {
+      await new Promise((r) => setTimeout(r, 200));
+    }
+  } while (cursor && pages < maxPages);
+
+  return allTrades;
 }
 
 // Client-side fetcher for SWR

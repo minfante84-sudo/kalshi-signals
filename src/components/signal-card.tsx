@@ -1,27 +1,11 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MarketSignal, formatNumber, formatPercent } from "@/lib/signals";
-import { ArrowUpRight, ArrowDownRight, Minus, TrendingUp, BarChart3 } from "lucide-react";
+import { MarketSignal, formatDollars, formatNumber, formatPercent } from "@/lib/signals";
+import { ArrowUpRight, ArrowDownRight, Minus, DollarSign, BarChart3 } from "lucide-react";
 
 export function SignalCard({ signal }: { signal: MarketSignal }) {
-  const { market, priceChangePct, volume24h, openInterest, signalType, signalStrength } = signal;
-
-  const trendIcon =
-    signalType === "bullish" ? (
-      <ArrowUpRight className="h-4 w-4 text-green-500" />
-    ) : signalType === "bearish" ? (
-      <ArrowDownRight className="h-4 w-4 text-red-500" />
-    ) : (
-      <Minus className="h-4 w-4 text-muted-foreground" />
-    );
-
-  const strengthColor =
-    signalStrength === "strong"
-      ? "bg-chart-1 text-white"
-      : signalStrength === "moderate"
-        ? "bg-chart-4 text-black"
-        : "bg-muted text-muted-foreground";
+  const { market, largestTrade, priceChangePct, volume24h, signalStrength } = signal;
 
   const priceChangeColor =
     priceChangePct > 0
@@ -29,6 +13,20 @@ export function SignalCard({ signal }: { signal: MarketSignal }) {
       : priceChangePct < 0
         ? "text-red-500"
         : "text-muted-foreground";
+
+  const strengthLabel =
+    signalStrength === "high"
+      ? "High Inflow"
+      : signalStrength === "moderate"
+        ? "Moderate Inflow"
+        : "Low Inflow";
+
+  const strengthColor =
+    signalStrength === "high"
+      ? "bg-chart-1 text-white"
+      : signalStrength === "moderate"
+        ? "bg-chart-4 text-black"
+        : "bg-muted text-muted-foreground";
 
   return (
     <Link href={`/market/${market.ticker}`}>
@@ -39,7 +37,7 @@ export function SignalCard({ signal }: { signal: MarketSignal }) {
               {market.title}
             </CardTitle>
             <Badge className={strengthColor} variant="secondary">
-              {signalStrength}
+              {strengthLabel}
             </Badge>
           </div>
           <p className="text-xs text-muted-foreground">{market.ticker}</p>
@@ -47,34 +45,22 @@ export function SignalCard({ signal }: { signal: MarketSignal }) {
         <CardContent>
           <div className="grid grid-cols-3 gap-3">
             <div>
+              <p className="text-xs text-muted-foreground">Largest Trade</p>
+              <p className="text-lg font-semibold">{formatDollars(largestTrade)}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Volume 24h</p>
+              <p className="text-lg font-semibold">{formatNumber(volume24h)}</p>
+            </div>
+            <div>
               <p className="text-xs text-muted-foreground">Price</p>
               <p className="text-lg font-semibold">
                 {market.last_price}&cent;
               </p>
             </div>
-            <div>
-              <p className="text-xs text-muted-foreground">24h Change</p>
-              <div className="flex items-center gap-1">
-                {trendIcon}
-                <p className={`text-lg font-semibold ${priceChangeColor}`}>
-                  {formatPercent(priceChangePct)}
-                </p>
-              </div>
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground">Score</p>
-              <p className="text-lg font-semibold">{signal.signalScore}</p>
-            </div>
           </div>
           <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <BarChart3 className="h-3 w-3" />
-              Vol: {formatNumber(volume24h)}
-            </span>
-            <span className="flex items-center gap-1">
-              <TrendingUp className="h-3 w-3" />
-              OI: {formatNumber(openInterest)}
-            </span>
+            <span className={priceChangeColor}>{formatPercent(priceChangePct)}</span>
           </div>
         </CardContent>
       </Card>
