@@ -75,8 +75,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AdBanner className="sticky top-0 z-50 border-b border-border bg-background" />
         <Navbar />
-        <AdBanner className="sticky top-14 z-40 border-b border-border bg-background mx-auto max-w-7xl px-4" />
         <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
         <Analytics />
       </body>
