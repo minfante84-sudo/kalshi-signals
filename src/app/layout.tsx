@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/navbar";
-import { AdBanner } from "@/components/ad-banner";
+import { AdBanner, AdBannerFooter } from "@/components/ad-banner";
 import Script from "next/script";
 import "./globals.css";
 
@@ -77,7 +77,8 @@ export default function RootLayout({
       >
         <AdBanner className="sticky top-0 z-50 border-b border-border bg-background" />
         <Navbar />
-        <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
+        <main className="mx-auto max-w-7xl px-4 py-6 pb-20">{children}</main>
+        <AdBannerFooter className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background" />
         <Analytics />
       </body>
     </html>
