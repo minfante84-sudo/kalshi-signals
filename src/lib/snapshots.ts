@@ -22,26 +22,48 @@ function snapshotKey(date: string): string {
   return `snapshot:${date}`;
 }
 
+export interface Snapshot {
+  entries: SnapshotEntry[];
+  capturedAt: string; // ISO timestamp
+}
+
 export async function saveSnapshot(
   date: string,
   entries: SnapshotEntry[]
 ): Promise<void> {
-  await kv.set(snapshotKey(date), JSON.stringify(entries));
+  const snapshot: Snapshot = {
+    entries,
+    capturedAt: new Date().toISOString(),
+  };
+  await kv.set(snapshotKey(date), JSON.stringify(snapshot));
   await kv.zadd(DATES_KEY, { score: new Date(date).getTime(), member: date });
 }
 
 export async function getSnapshot(
   date: string
-): Promise<SnapshotEntry[] | null> {
+): Promise<{ entries: SnapshotEntry[]; capturedAt: string | null } | null> {
   try {
     const data = await kv.get<string>(snapshotKey(date));
     if (!data) return null;
-    const parsed: SnapshotEntry[] =
-      typeof data === "string" ? JSON.parse(data) : data;
+    const parsed = typeof data === "string" ? JSON.parse(data) : data;
+
+    // Handle both old format (bare array) and new format ({ entries, capturedAt })
+    let entries: SnapshotEntry[];
+    let capturedAt: string | null = null;
+    if (Array.isArray(parsed)) {
+      entries = parsed;
+    } else {
+      entries = parsed.entries || [];
+      capturedAt = parsed.capturedAt || null;
+    }
+
     // Filter out entries from old schema that lack required fields
-    return parsed.filter(
-      (e) => typeof e.largestTrade === "number" && !isNaN(e.largestTrade)
+    entries = entries.filter(
+      (e: SnapshotEntry) =>
+        typeof e.largestTrade === "number" && !isNaN(e.largestTrade)
     );
+
+    return { entries, capturedAt };
   } catch {
     return null;
   }

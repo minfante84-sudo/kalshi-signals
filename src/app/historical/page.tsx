@@ -21,6 +21,7 @@ export default async function HistoricalPage({
   const params = await searchParams;
   let dates: string[] = [];
   let entries: SnapshotEntry[] | null = null;
+  let capturedAt: string | null = null;
   let selectedDate: string | null = null;
   let error: string | null = null;
 
@@ -29,7 +30,11 @@ export default async function HistoricalPage({
     selectedDate = params.date || dates[0] || null;
 
     if (selectedDate) {
-      entries = await getSnapshot(selectedDate);
+      const snapshot = await getSnapshot(selectedDate);
+      if (snapshot) {
+        entries = snapshot.entries;
+        capturedAt = snapshot.capturedAt;
+      }
     }
   } catch (e) {
     error = e instanceof Error ? e.message : "Failed to load historical data";
@@ -68,6 +73,22 @@ export default async function HistoricalPage({
 
       {entries && entries.length > 0 && (
         <>
+          {capturedAt && (
+            <p className="text-xs text-muted-foreground">
+              As of{" "}
+              {new Date(capturedAt).toLocaleString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "America/New_York",
+              })}{" "}
+              ET
+            </p>
+          )}
+
           {/* Mobile card layout */}
           <div className="space-y-3 md:hidden">
             {entries.map((entry) => {
