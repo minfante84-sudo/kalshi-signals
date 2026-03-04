@@ -76,6 +76,13 @@ export default function RootLayout({
       <head>
         <meta name="monetag" content="3f89aab214b25d0ce35828421c4be536" />
         <Script
+          id="monetag-vignette"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(s){s.dataset.zone='10682524',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`,
+          }}
+        />
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6706124830973350"
           crossOrigin="anonymous"
