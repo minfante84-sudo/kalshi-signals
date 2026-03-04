@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
@@ -8,30 +8,28 @@ declare global {
   }
 }
 
-function useAdSize() {
-  const [size, setSize] = useState<{ width: number; height: number }>({ width: 728, height: 90 });
-
-  useEffect(() => {
-    function update() {
-      if (window.innerWidth < 468) {
-        setSize({ width: 320, height: 50 });
-      } else if (window.innerWidth < 768) {
-        setSize({ width: 468, height: 60 });
-      } else {
-        setSize({ width: 728, height: 90 });
-      }
+const adStyles = `
+  .ad-container ins {
+    display: inline-block !important;
+    width: 320px;
+    height: 50px;
+  }
+  @media (min-width: 468px) {
+    .ad-container ins {
+      width: 468px;
+      height: 60px;
     }
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  return size;
-}
+  }
+  @media (min-width: 768px) {
+    .ad-container ins {
+      width: 728px;
+      height: 90px;
+    }
+  }
+`;
 
 export function AdBanner({ className }: { className?: string }) {
   const pushed = useRef(false);
-  const size = useAdSize();
 
   useEffect(() => {
     if (pushed.current) return;
@@ -44,10 +42,10 @@ export function AdBanner({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={className}>
+    <div className={`ad-container ${className ?? ""}`}>
+      <style dangerouslySetInnerHTML={{ __html: adStyles }} />
       <ins
         className="adsbygoogle"
-        style={{ display: "inline-block", width: size.width, height: size.height }}
         data-ad-client="ca-pub-6706124830973350"
         data-ad-slot="6327886268"
       />
@@ -57,7 +55,6 @@ export function AdBanner({ className }: { className?: string }) {
 
 export function AdBannerFooter({ className }: { className?: string }) {
   const pushed = useRef(false);
-  const size = useAdSize();
 
   useEffect(() => {
     if (pushed.current) return;
@@ -70,10 +67,9 @@ export function AdBannerFooter({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={className}>
+    <div className={`ad-container ${className ?? ""}`}>
       <ins
         className="adsbygoogle"
-        style={{ display: "inline-block", width: size.width, height: size.height }}
         data-ad-client="ca-pub-6706124830973350"
         data-ad-slot="6327886268"
       />
