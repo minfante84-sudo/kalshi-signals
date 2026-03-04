@@ -35,7 +35,7 @@ export async function saveSnapshot(
     entries,
     capturedAt: new Date().toISOString(),
   };
-  await kv.set(snapshotKey(date), JSON.stringify(snapshot));
+  await kv.set(snapshotKey(date), snapshot);
   await kv.zadd(DATES_KEY, { score: new Date(date).getTime(), member: date });
 }
 

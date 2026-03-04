@@ -73,7 +73,7 @@ export default async function HistoricalPage({
 
       {entries && entries.length > 0 && (
         <>
-          {capturedAt && (
+          {capturedAt ? (
             <p className="text-xs text-muted-foreground">
               As of{" "}
               {new Date(capturedAt).toLocaleString("en-US", {
@@ -87,7 +87,11 @@ export default async function HistoricalPage({
               })}{" "}
               ET
             </p>
-          )}
+          ) : selectedDate ? (
+            <p className="text-xs text-muted-foreground">
+              Snapshot from {selectedDate}
+            </p>
+          ) : null}
 
           {/* Mobile card layout */}
           <div className="space-y-3 md:hidden">
