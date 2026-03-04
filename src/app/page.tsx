@@ -92,6 +92,58 @@ export default async function SignalsDashboard() {
           No active signals found. Markets may be closed or inactive.
         </div>
       )}
+
+      {/* Informational sections for SEO and user education */}
+      <section className="space-y-4 rounded-lg border border-border p-6">
+        <h2 className="text-lg font-semibold">What is Kalshi?</h2>
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            Kalshi is a federally regulated prediction market exchange where
+            traders buy and sell contracts on the outcome of real-world events.
+            Regulated by the CFTC (Commodity Futures Trading Commission), Kalshi
+            lets you trade on topics ranging from politics and economics to
+            sports, crypto prices, and weather.
+          </p>
+          <p>
+            Each contract is priced between 1&cent; and 99&cent; and pays out
+            $1.00 if the event occurs or $0.00 if it doesn&apos;t. The market
+            price reflects the crowd&apos;s real-time estimate of the
+            probability of an outcome — a contract trading at 72&cent; implies
+            roughly a 72% chance the event happens.
+          </p>
+          <p>
+            Unlike traditional polling or pundit predictions, Kalshi prices are
+            backed by real money, giving them a unique signal about how
+            participants actually assess risk and probability.
+          </p>
+        </div>
+      </section>
+
+      <section className="space-y-4 rounded-lg border border-border p-6">
+        <h2 className="text-lg font-semibold">How To Use Kalshi Signals</h2>
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            Kalshi Signals tracks the largest individual trades happening across
+            every active market on Kalshi, updated in real time. When someone
+            places an unusually large bet — often hundreds or thousands of
+            dollars on a single contract — it can indicate strong conviction
+            about an outcome.
+          </p>
+          <p>
+            Use this data to spot where informed money is flowing. A surge of
+            large &ldquo;Yes&rdquo; trades on a market may signal growing
+            confidence that an event will happen, while large &ldquo;No&rdquo;
+            trades suggest the opposite. Combined with price changes and volume,
+            these signals help you identify markets with meaningful activity
+            before they make headlines.
+          </p>
+          <p>
+            This tool is for informational and research purposes only. It does
+            not constitute financial advice. Always do your own research before
+            making any trading decisions.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

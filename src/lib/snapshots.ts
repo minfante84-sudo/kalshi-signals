@@ -33,9 +33,18 @@ export async function saveSnapshot(
 export async function getSnapshot(
   date: string
 ): Promise<SnapshotEntry[] | null> {
-  const data = await kv.get<string>(snapshotKey(date));
-  if (!data) return null;
-  return typeof data === "string" ? JSON.parse(data) : data;
+  try {
+    const data = await kv.get<string>(snapshotKey(date));
+    if (!data) return null;
+    const parsed: SnapshotEntry[] =
+      typeof data === "string" ? JSON.parse(data) : data;
+    // Filter out entries from old schema that lack required fields
+    return parsed.filter(
+      (e) => typeof e.largestTrade === "number" && !isNaN(e.largestTrade)
+    );
+  } catch {
+    return null;
+  }
 }
 
 export async function getAvailableDates(): Promise<string[]> {
