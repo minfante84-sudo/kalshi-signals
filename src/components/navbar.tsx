@@ -16,6 +16,12 @@ export function Navbar() {
           >
             Signals
           </Link>
+          <Link
+            href="/faq"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            FAQ
+          </Link>
         </nav>
       </div>
     </header>
