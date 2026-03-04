@@ -39,6 +39,10 @@ export async function getSnapshot(
 }
 
 export async function getAvailableDates(): Promise<string[]> {
-  const dates = await kv.zrange(DATES_KEY, 0, -1, { rev: true });
-  return dates as string[];
+  try {
+    const dates = await kv.zrange(DATES_KEY, 0, -1);
+    return (dates as string[]).reverse();
+  } catch {
+    return [];
+  }
 }
