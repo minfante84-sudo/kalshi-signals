@@ -77,6 +77,19 @@ export default function RootLayout({
         <meta name="monetag" content="3f89aab214b25d0ce35828421c4be536" />
         <Script
           async
+          src="https://www.googletagmanager.com/gtag/js?id=G-L2SG61SW32"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-L2SG61SW32');
+          `}
+        </Script>
+        <Script
+          async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6706124830973350"
           crossOrigin="anonymous"
           strategy="afterInteractive"
