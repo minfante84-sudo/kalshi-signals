@@ -22,6 +22,12 @@ export function Navbar() {
           >
             FAQ
           </Link>
+          <Link
+            href="/contact"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Contact
+          </Link>
         </nav>
       </div>
     </header>
