@@ -6,13 +6,14 @@ export interface SnapshotEntry {
   title: string;
   last_price: number;
   previous_price: number;
+  largestTrade: number;
+  largestTradeContracts: number;
+  largestTradeSide: "yes" | "no";
   priceChange: number;
   priceChangePct: number;
   volume24h: number;
   openInterest: number;
-  signalScore: number;
-  signalType: "bullish" | "bearish" | "neutral";
-  signalStrength: "strong" | "moderate" | "weak";
+  signalStrength: "high" | "moderate" | "low";
 }
 
 const DATES_KEY = "snapshot:dates";
