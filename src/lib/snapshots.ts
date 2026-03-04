@@ -31,11 +31,9 @@ export async function saveSnapshot(
   date: string,
   entries: SnapshotEntry[]
 ): Promise<void> {
-  const snapshot: Snapshot = {
-    entries,
-    capturedAt: new Date().toISOString(),
-  };
-  await kv.set(snapshotKey(date), snapshot);
+  const capturedAt = new Date().toISOString();
+  await kv.set(snapshotKey(date), entries);
+  await kv.set(`${snapshotKey(date)}:time`, capturedAt);
   await kv.zadd(DATES_KEY, { score: new Date(date).getTime(), member: date });
 }
 
@@ -43,18 +41,22 @@ export async function getSnapshot(
   date: string
 ): Promise<{ entries: SnapshotEntry[]; capturedAt: string | null } | null> {
   try {
-    const data = await kv.get<string>(snapshotKey(date));
-    if (!data) return null;
-    const parsed = typeof data === "string" ? JSON.parse(data) : data;
+    const raw = await kv.get(snapshotKey(date));
+    if (!raw) return null;
 
-    // Handle both old format (bare array) and new format ({ entries, capturedAt })
+    // Parse entries — could be a JSON string or already-parsed array/object
+    let parsed: unknown = raw;
+    if (typeof parsed === "string") {
+      parsed = JSON.parse(parsed);
+    }
+
     let entries: SnapshotEntry[];
-    let capturedAt: string | null = null;
     if (Array.isArray(parsed)) {
       entries = parsed;
+    } else if (parsed && typeof parsed === "object" && "entries" in parsed) {
+      entries = (parsed as Snapshot).entries || [];
     } else {
-      entries = parsed.entries || [];
-      capturedAt = parsed.capturedAt || null;
+      return null;
     }
 
     // Filter out entries from old schema that lack required fields
@@ -62,6 +64,10 @@ export async function getSnapshot(
       (e: SnapshotEntry) =>
         typeof e.largestTrade === "number" && !isNaN(e.largestTrade)
     );
+
+    // Read timestamp from separate key
+    const capturedAt =
+      (await kv.get<string>(`${snapshotKey(date)}:time`)) || null;
 
     return { entries, capturedAt };
   } catch {
