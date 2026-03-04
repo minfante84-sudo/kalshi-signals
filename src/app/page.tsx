@@ -142,6 +142,9 @@ export default async function SignalsDashboard() {
             not constitute financial advice. Always do your own research before
             making any trading decisions.
           </p>
+          <p>
+            Kalshi Signals is in no way affiliated with or endorsed by Kalshi.
+          </p>
         </div>
       </section>
     </div>
