@@ -167,7 +167,7 @@ export function MarketTable({ signals }: { signals: MarketSignal[] }) {
               })()}
               <div className="mt-3 flex items-center gap-3 flex-wrap">
                 <span className="font-mono font-semibold text-base">{formatDollars(signal.largestTrade)}</span>
-                <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ${signal.largestTradeSide === "yes" ? "bg-green-500/15 text-green-600" : "bg-red-500/15 text-red-600"}`}>
+                <span className={`text-xs font-semibold ${signal.largestTradeSide === "yes" ? "text-green-600" : "text-red-600"}`}>
                   {signal.largestTradeSide === "yes" ? "Yes" : "No"}
                 </span>
                 <span className="text-xs text-muted-foreground">
@@ -227,7 +227,7 @@ export function MarketTable({ signals }: { signals: MarketSignal[] }) {
                     </span>
                   </TableCell>
                   <TableCell>
-                    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ${signal.largestTradeSide === "yes" ? "bg-green-500/15 text-green-600" : "bg-red-500/15 text-red-600"}`}>
+                    <span className={`text-xs font-semibold ${signal.largestTradeSide === "yes" ? "text-green-600" : "text-red-600"}`}>
                       {signal.largestTradeSide === "yes" ? "Yes" : "No"}
                     </span>
                   </TableCell>
