@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table";
 import { MarketSignal, formatDollars, formatNumber, formatPercent } from "@/lib/signals";
 import { ArrowUpDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { MobileInlineAd } from "@/components/mobile-inline-ad";
 
 
 function formatTitle(title: string): string {
@@ -143,7 +144,7 @@ export function MarketTable({ signals }: { signals: MarketSignal[] }) {
 
       {/* Mobile card layout */}
       <div className="space-y-3 md:hidden">
-        {paged.map((signal) => {
+        {paged.map((signal, index) => {
           const { market, priceChangePct } = signal;
           const priceChangeColor =
             priceChangePct > 0
@@ -153,33 +154,35 @@ export function MarketTable({ signals }: { signals: MarketSignal[] }) {
                 : "text-muted-foreground";
 
           return (
-            <Link
-              key={market.ticker}
-              href={`/market/${market.ticker}`}
-              className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"
-            >
-              <p className="font-medium text-sm leading-snug">{formatTitle(market.title)}</p>
-              {(() => {
-                const desc = getDescription(market);
-                return desc ? (
-                  <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{desc}</p>
-                ) : null;
-              })()}
-              <div className="mt-3 flex items-center gap-3 flex-wrap">
-                <span className="font-mono font-semibold text-base">{formatDollars(signal.largestTrade)}</span>
-                <span className={`text-xs font-semibold ${signal.largestTradeSide === "yes" ? "text-green-600" : "text-red-600"}`}>
-                  {signal.largestTradeSide === "yes" ? "Yes" : "No"}
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  {formatNumber(signal.largestTradeContracts)} ct
-                </span>
-              </div>
-              <div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">
-                <span>Price: <span className="font-mono text-foreground">{market.last_price}&cent;</span></span>
-                <span className={`font-mono ${priceChangeColor}`}>{formatPercent(priceChangePct)}</span>
-                <span>Vol: <span className="font-mono">{formatNumber(signal.volume24h)}</span></span>
-              </div>
-            </Link>
+            <div key={market.ticker}>
+              {index === 10 && <MobileInlineAd />}
+              <Link
+                href={`/market/${market.ticker}`}
+                className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"
+              >
+                <p className="font-medium text-sm leading-snug">{formatTitle(market.title)}</p>
+                {(() => {
+                  const desc = getDescription(market);
+                  return desc ? (
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{desc}</p>
+                  ) : null;
+                })()}
+                <div className="mt-3 flex items-center gap-3 flex-wrap">
+                  <span className="font-mono font-semibold text-base">{formatDollars(signal.largestTrade)}</span>
+                  <span className={`text-xs font-semibold ${signal.largestTradeSide === "yes" ? "text-green-600" : "text-red-600"}`}>
+                    {signal.largestTradeSide === "yes" ? "Yes" : "No"}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {formatNumber(signal.largestTradeContracts)} ct
+                  </span>
+                </div>
+                <div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Price: <span className="font-mono text-foreground">{market.last_price}&cent;</span></span>
+                  <span className={`font-mono ${priceChangeColor}`}>{formatPercent(priceChangePct)}</span>
+                  <span>Vol: <span className="font-mono">{formatNumber(signal.volume24h)}</span></span>
+                </div>
+              </Link>
+            </div>
           );
         })}
       </div>

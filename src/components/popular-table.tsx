@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table";
 import { MarketInflow, formatDollars, formatNumber } from "@/lib/signals";
 import { ArrowUpDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { MobileInlineAd } from "@/components/mobile-inline-ad";
 
 function formatTitle(title: string): string {
   return title
@@ -97,27 +98,29 @@ export function PopularTable({ inflows }: { inflows: MarketInflow[] }) {
 
       {/* Mobile card layout */}
       <div className="space-y-3 md:hidden">
-        {paged.map((inflow) => {
+        {paged.map((inflow, index) => {
           const { market } = inflow;
           return (
-            <Link
-              key={market.ticker}
-              href={`/market/${market.ticker}`}
-              className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"
-            >
-              <p className="font-medium text-sm leading-snug">{formatTitle(market.title)}</p>
-              <div className="mt-3 flex items-center gap-3 flex-wrap">
-                <span className="font-mono font-semibold text-base">{formatDollars(inflow.totalDollars)}</span>
-                <span className="text-xs text-muted-foreground">
-                  {formatNumber(inflow.tradeCount)} trades
-                </span>
-              </div>
-              <div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">
-                <span>Yes: <span className="font-mono text-green-500">{formatDollars(inflow.yesDollars)}</span></span>
-                <span>No: <span className="font-mono text-red-500">{formatDollars(inflow.noDollars)}</span></span>
-                <span>Price: <span className="font-mono text-foreground">{market.last_price}&cent;</span></span>
-              </div>
-            </Link>
+            <div key={market.ticker}>
+              {index === 10 && <MobileInlineAd />}
+              <Link
+                href={`/market/${market.ticker}`}
+                className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"
+              >
+                <p className="font-medium text-sm leading-snug">{formatTitle(market.title)}</p>
+                <div className="mt-3 flex items-center gap-3 flex-wrap">
+                  <span className="font-mono font-semibold text-base">{formatDollars(inflow.totalDollars)}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {formatNumber(inflow.tradeCount)} trades
+                  </span>
+                </div>
+                <div className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">
+                  <span>Yes: <span className="font-mono text-green-500">{formatDollars(inflow.yesDollars)}</span></span>
+                  <span>No: <span className="font-mono text-red-500">{formatDollars(inflow.noDollars)}</span></span>
+                  <span>Price: <span className="font-mono text-foreground">{market.last_price}&cent;</span></span>
+                </div>
+              </Link>
+            </div>
           );
         })}
       </div>
