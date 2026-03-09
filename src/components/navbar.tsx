@@ -17,6 +17,12 @@ export function Navbar() {
             Signals
           </Link>
           <Link
+            href="/popular"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Most Popular
+          </Link>
+          <Link
             href="/faq"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >

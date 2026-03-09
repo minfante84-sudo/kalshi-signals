@@ -74,6 +74,63 @@ export function buildSignals(
   return signals.sort((a, b) => b.largestTrade - a.largestTrade);
 }
 
+export interface MarketInflow {
+  market: KalshiMarket;
+  yesDollars: number;
+  noDollars: number;
+  totalDollars: number;
+  tradeCount: number;
+}
+
+/** Sum all trade dollars per ticker, split by yes/no side. */
+export function sumTradesByTicker(
+  trades: KalshiTrade[]
+): Map<string, { yesDollars: number; noDollars: number; tradeCount: number }> {
+  const map = new Map<string, { yesDollars: number; noDollars: number; tradeCount: number }>();
+
+  for (const trade of trades) {
+    const priceCents =
+      trade.taker_side === "yes" ? trade.yes_price : trade.no_price;
+    const dollars = trade.count * (priceCents / 100);
+    const existing = map.get(trade.ticker) ?? { yesDollars: 0, noDollars: 0, tradeCount: 0 };
+
+    if (trade.taker_side === "yes") {
+      existing.yesDollars += dollars;
+    } else {
+      existing.noDollars += dollars;
+    }
+    existing.tradeCount += 1;
+
+    map.set(trade.ticker, existing);
+  }
+
+  return map;
+}
+
+/** Build inflow data from markets + aggregated trade sums. */
+export function buildInflows(
+  markets: KalshiMarket[],
+  tradeSums: Map<string, { yesDollars: number; noDollars: number; tradeCount: number }>
+): MarketInflow[] {
+  const inflows: MarketInflow[] = [];
+
+  for (const market of markets) {
+    const sums = tradeSums.get(market.ticker);
+    if (!sums || market.last_price <= 0) continue;
+    if (market.title.split(",").length > 4) continue;
+
+    inflows.push({
+      market,
+      yesDollars: sums.yesDollars,
+      noDollars: sums.noDollars,
+      totalDollars: sums.yesDollars + sums.noDollars,
+      tradeCount: sums.tradeCount,
+    });
+  }
+
+  return inflows.sort((a, b) => b.totalDollars - a.totalDollars);
+}
+
 export function formatDollars(value: number): string {
   if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 1_000) return `$${(value / 1_000).toFixed(1)}K`;
