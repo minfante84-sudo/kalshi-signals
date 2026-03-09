@@ -14,7 +14,7 @@ export function MobileInlineAd() {
     script.async = true;
     script.referrerPolicy = "no-referrer-when-downgrade";
     script.src =
-      "//conventionalresponse.com/b.XVVXs-dCGYlU0iYTW/cA/De/mI9/uTZjU/lbkLPoTIYM4sNITMMYx_N/jgE/t-Nyjmgf1LM/zVEJ2/NuQD";
+      "//conventionalresponse.com/bcXSV.sJddGolB0EYsWbc-/_eOmf9Wu/ZsUIllkjPgTQY/4lNjTpQ/ypM/zjMptINHjgg/1MNZDtIZzGNGwn";
     containerRef.current.appendChild(script);
   }, []);
 
