@@ -131,6 +131,38 @@ export function buildInflows(
   return inflows.sort((a, b) => b.totalDollars - a.totalDollars);
 }
 
+export interface MarketMover {
+  market: KalshiMarket;
+  priceChange: number;
+  absPriceChange: number;
+  priceChangePct: number;
+  volume24h: number;
+}
+
+export function buildMomentum(markets: KalshiMarket[]): MarketMover[] {
+  const movers: MarketMover[] = [];
+
+  for (const market of markets) {
+    if (market.last_price <= 0 || market.previous_price <= 0) continue;
+    if (market.title.split(",").length > 4) continue;
+
+    const priceChange = market.last_price - market.previous_price;
+    if (priceChange === 0) continue;
+
+    const priceChangePct = (priceChange / market.previous_price) * 100;
+
+    movers.push({
+      market,
+      priceChange,
+      absPriceChange: Math.abs(priceChange),
+      priceChangePct,
+      volume24h: market.volume_24h || market.volume,
+    });
+  }
+
+  return movers.sort((a, b) => b.absPriceChange - a.absPriceChange);
+}
+
 export function formatDollars(value: number): string {
   if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 1_000) return `$${(value / 1_000).toFixed(1)}K`;

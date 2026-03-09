@@ -23,6 +23,12 @@ export function Navbar() {
             Most Popular
           </Link>
           <Link
+            href="/momentum"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Momentum
+          </Link>
+          <Link
             href="/faq"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
