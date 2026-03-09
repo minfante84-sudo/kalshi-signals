@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export function MobileAd() {
+function MobileAdUnit() {
   const containerRef = useRef<HTMLDivElement>(null);
   const loaded = useRef(false);
 
@@ -18,11 +18,23 @@ export function MobileAd() {
     containerRef.current.appendChild(script);
   }, []);
 
+  return <div ref={containerRef} />;
+}
+
+export function MobileAd() {
+  const [adKey, setAdKey] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => setAdKey((k) => k + 1), 30000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       className="flex justify-center md:hidden bg-black"
       style={{ minHeight: 100 }}
-      ref={containerRef}
-    />
+    >
+      <MobileAdUnit key={adKey} />
+    </div>
   );
 }
