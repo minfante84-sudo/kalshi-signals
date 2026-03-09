@@ -7,22 +7,15 @@ export function MobileAd() {
   const loaded = useRef(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (loaded.current || !containerRef.current) return;
+    loaded.current = true;
 
-    function loadAd() {
-      if (!containerRef.current) return;
-      containerRef.current.innerHTML = "";
-      const script = document.createElement("script");
-      script.async = true;
-      script.referrerPolicy = "no-referrer-when-downgrade";
-      script.src =
-        "//conventionalresponse.com/b.XVVXs-dCGYlU0iYTW/cA/De/mI9/uTZjU/lbkLPoTIYM4sNITMMYx_N/jgE/t-Nyjmgf1LM/zVEJ2/NuQD";
-      containerRef.current.appendChild(script);
-    }
-
-    loadAd();
-    const interval = setInterval(loadAd, 35000);
-    return () => clearInterval(interval);
+    const script = document.createElement("script");
+    script.async = true;
+    script.referrerPolicy = "no-referrer-when-downgrade";
+    script.src =
+      "//conventionalresponse.com/b.XVVXs-dCGYlU0iYTW/cA/De/mI9/uTZjU/lbkLPoTIYM4sNITMMYx_N/jgE/t-Nyjmgf1LM/zVEJ2/NuQD";
+    containerRef.current.appendChild(script);
   }, []);
 
   return (
