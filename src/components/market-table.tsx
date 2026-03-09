@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { MarketSignal, formatDollars, formatNumber, formatPercent } from "@/lib/signals";
 import { ArrowUpDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
-import { AdBanner } from "@/components/ad-banner";
+
 
 function formatTitle(title: string): string {
   // Strip "yes "/"no " prefixes from each leg and join with " + "
@@ -271,9 +271,6 @@ export function MarketTable({ signals }: { signals: MarketSignal[] }) {
           </button>
         </div>
       )}
-
-      {/* Bottom ad */}
-      <AdBanner className="pt-4" />
     </>
   );
 }
