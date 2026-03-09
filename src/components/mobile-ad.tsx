@@ -3,13 +3,11 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
-export function MobileAd() {
+function MobileAdUnit() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
 
   useEffect(() => {
     if (!containerRef.current) return;
-    containerRef.current.innerHTML = "";
 
     const script = document.createElement("script");
     script.async = true;
@@ -17,13 +15,27 @@ export function MobileAd() {
     script.src =
       "//conventionalresponse.com/b.XVVXs-dCGYlU0iYTW/cA/De/mI9/uTZjU/lbkLPoTIYM4sNITMMYx_N/jgE/t-Nyjmgf1LM/zVEJ2/NuQD";
     containerRef.current.appendChild(script);
-  }, [pathname]);
+  }, []);
+
+  return <div ref={containerRef} />;
+}
+
+export function MobileAd() {
+  const pathname = usePathname();
+  const keyRef = useRef(0);
+  const prevPathRef = useRef(pathname);
+
+  if (pathname !== prevPathRef.current) {
+    keyRef.current += 1;
+    prevPathRef.current = pathname;
+  }
 
   return (
     <div
       className="flex justify-center md:hidden bg-black"
       style={{ minHeight: 100 }}
-      ref={containerRef}
-    />
+    >
+      <MobileAdUnit key={keyRef.current} />
+    </div>
   );
 }
