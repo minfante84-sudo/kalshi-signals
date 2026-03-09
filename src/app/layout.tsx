@@ -63,6 +63,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    c9b7519defe2afdc74110756904d4ff32c843f4d: "c9b7519defe2afdc74110756904d4ff32c843f4d",
+  },
 };
 
 export default function RootLayout({
