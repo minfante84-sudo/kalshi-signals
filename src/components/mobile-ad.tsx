@@ -19,6 +19,10 @@ export function MobileAd() {
   }, []);
 
   return (
-    <div className="flex justify-center md:hidden" ref={containerRef} />
+    <div
+      className="flex justify-center md:hidden bg-black"
+      style={{ minHeight: 100 }}
+      ref={containerRef}
+    />
   );
 }
