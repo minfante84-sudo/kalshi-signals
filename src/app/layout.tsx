@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/navbar";
-import { AdBanner, AdBannerFooter } from "@/components/ad-banner";
 import Script from "next/script";
 import "./globals.css";
 
@@ -74,8 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <meta name="monetag" content="3f89aab214b25d0ce35828421c4be536" />
-        <Script
+<Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-L2SG61SW32"
           strategy="afterInteractive"
@@ -88,20 +86,12 @@ export default function RootLayout({
             gtag('config', 'G-L2SG61SW32');
           `}
         </Script>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6706124830973350"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AdBanner className="sticky top-0 z-50 border-b border-border bg-background flex justify-center py-1" />
         <Navbar />
-        <main className="mx-auto max-w-7xl px-4 py-6 pb-16 md:pb-28">{children}</main>
-        <AdBannerFooter className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background flex justify-center py-1" />
+        <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
         <Analytics />
       </body>
     </html>
