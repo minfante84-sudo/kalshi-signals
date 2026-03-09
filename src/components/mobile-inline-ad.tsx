@@ -2,7 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-export function MobileInlineAd() {
+const DEFAULT_SRC =
+  "//conventionalresponse.com/bcXSV.sJddGolB0EYsWbc-/_eOmf9Wu/ZsUIllkjPgTQY/4lNjTpQ/ypM/zjMptINHjgg/1MNZDtIZzGNGwn";
+
+export function MobileInlineAd({ src }: { src?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const loaded = useRef(false);
 
@@ -13,10 +16,9 @@ export function MobileInlineAd() {
     const script = document.createElement("script");
     script.async = true;
     script.referrerPolicy = "no-referrer-when-downgrade";
-    script.src =
-      "//conventionalresponse.com/bcXSV.sJddGolB0EYsWbc-/_eOmf9Wu/ZsUIllkjPgTQY/4lNjTpQ/ypM/zjMptINHjgg/1MNZDtIZzGNGwn";
+    script.src = src || DEFAULT_SRC;
     containerRef.current.appendChild(script);
-  }, []);
+  }, [src]);
 
   return (
     <div

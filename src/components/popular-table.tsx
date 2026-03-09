@@ -102,7 +102,7 @@ export function PopularTable({ inflows }: { inflows: MarketInflow[] }) {
           const { market } = inflow;
           return (
             <div key={market.ticker}>
-              {index === 10 && <MobileInlineAd />}
+              {index === 10 && <MobileInlineAd src="//conventionalresponse.com/bKXDVis.dQGBlW0aYWWgcn/iepmS9Xu/ZVUZlCkdP-TxYi4pNLT/QNyWNmDYU/tONVjrgc1cNgD/IK0HOYQK" />}
               <Link
                 href={`/market/${market.ticker}`}
                 className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"
