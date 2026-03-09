@@ -19,6 +19,6 @@ export function MobileAd() {
   }, []);
 
   return (
-    <div className="block md:hidden" ref={containerRef} />
+    <div className="flex justify-center md:hidden" ref={containerRef} />
   );
 }
