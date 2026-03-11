@@ -6,6 +6,7 @@ import { RefreshButton } from "@/components/refresh-button";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 30;
+export const maxDuration = 60;
 
 export default async function MomentumPage() {
   let movers: import("@/lib/signals").MarketMover[] = [];
@@ -14,7 +15,7 @@ export default async function MomentumPage() {
   const fetchedAt = new Date();
 
   try {
-    const markets = await getAllMarkets({ status: "open" });
+    const markets = await getAllMarkets({ status: "open", maxPages: 15 });
     totalMarkets = markets.length;
     movers = buildMomentum(markets);
   } catch (e) {
