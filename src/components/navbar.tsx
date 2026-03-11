@@ -58,6 +58,12 @@ export function Navbar() {
             Spreads
           </Link>
           <Link
+            href="/about"
+            className="hidden sm:inline text-muted-foreground transition-colors hover:text-foreground"
+          >
+            About
+          </Link>
+          <Link
             href="/faq"
             className="hidden sm:inline text-muted-foreground transition-colors hover:text-foreground"
           >
@@ -86,6 +92,13 @@ export function Navbar() {
                   className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
                 >
                   Widest Spreads
+                </Link>
+                <Link
+                  href="/about"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
+                >
+                  About
                 </Link>
                 <Link
                   href="/faq"
