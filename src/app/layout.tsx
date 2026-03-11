@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/navbar";
 import { MobileAd } from "@/components/mobile-ad";
 import { DesktopAd } from "@/components/desktop-ad";
+import { Footer } from "@/components/footer";
 
 import Script from "next/script";
 import "./globals.css";
@@ -102,6 +103,7 @@ export default function RootLayout({
           <Navbar />
         </div>
         <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>
