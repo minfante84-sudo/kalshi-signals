@@ -44,6 +44,12 @@ export function Navbar() {
           >
             Momentum
           </Link>
+          <Link
+            href="/new-markets"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            New
+          </Link>
           {/* FAQ & Contact visible on desktop, hidden on mobile */}
           <Link
             href="/faq"
