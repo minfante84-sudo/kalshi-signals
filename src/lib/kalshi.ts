@@ -192,6 +192,16 @@ export async function getMarkets(params?: {
   };
 }
 
+// Temporary: fetch raw market keys for debugging
+export async function getMarketsRawSample(): Promise<{ keys: string[]; sample: Record<string, unknown> }> {
+  const raw = await kalshiFetch<{ markets: RawKalshiMarket[] }>("/markets", {
+    limit: 1,
+    status: "open",
+  });
+  const m = raw.markets?.[0] || {};
+  return { keys: Object.keys(m), sample: m as Record<string, unknown> };
+}
+
 export async function getAllMarkets(params?: {
   status?: string;
   maxPages?: number;

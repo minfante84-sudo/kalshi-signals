@@ -1,4 +1,4 @@
-import { getAllMarkets } from "@/lib/kalshi";
+import { getAllMarkets, getMarketsRawSample } from "@/lib/kalshi";
 import { buildMomentum } from "@/lib/signals";
 import { MomentumTable } from "@/components/momentum-table";
 import { Zap } from "lucide-react";
@@ -16,17 +16,11 @@ export default async function MomentumPage() {
 
   let debugSample = "";
   try {
+    const rawSample = await getMarketsRawSample();
+    debugSample = JSON.stringify(rawSample.sample);
+
     const markets = await getAllMarkets({ status: "open", maxPages: 15 });
     totalMarkets = markets.length;
-    if (markets.length > 0) {
-      const s = markets[0];
-      debugSample = JSON.stringify({
-        last_price: s.last_price,
-        last_price_dollars: s.last_price_dollars,
-        previous_price: s.previous_price,
-        previous_price_dollars: s.previous_price_dollars,
-      });
-    }
     movers = buildMomentum(markets);
   } catch (e) {
     error = e instanceof Error ? e.message : "Failed to load market data";
