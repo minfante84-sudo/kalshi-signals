@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 export function MobileAd() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  const loadAd = useCallback(() => {
     if (!containerRef.current) return;
+
+    // Clear previous ad content
+    containerRef.current.innerHTML = "";
 
     const optionsScript = document.createElement("script");
     optionsScript.text = `
@@ -26,6 +29,12 @@ export function MobileAd() {
     containerRef.current.appendChild(optionsScript);
     containerRef.current.appendChild(invokeScript);
   }, []);
+
+  useEffect(() => {
+    loadAd();
+    const interval = setInterval(loadAd, 30000);
+    return () => clearInterval(interval);
+  }, [loadAd]);
 
   return (
     <div
