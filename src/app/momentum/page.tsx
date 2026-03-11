@@ -61,7 +61,8 @@ export default async function MomentumPage() {
 
       {!error && movers.length === 0 && (
         <div className="py-12 text-center text-muted-foreground">
-          No price movements found. Markets may be closed or inactive.
+          <p>No price movements found. Markets may be closed or inactive.</p>
+          <p className="mt-2 text-xs">Debug: {totalMarkets} markets fetched</p>
         </div>
       )}
     </div>
