@@ -8,26 +8,25 @@ export function MobileAd() {
   const loadAd = useCallback(() => {
     if (!containerRef.current) return;
 
-    // Clear previous ad content
     containerRef.current.innerHTML = "";
 
-    const optionsScript = document.createElement("script");
-    optionsScript.text = `
-      atOptions = {
-        'key' : 'fc44b092dbf032c9495ba9db4aff2cdc',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-      };
+    const script = document.createElement("script");
+    script.text = `
+      (function() {
+        atOptions = {
+          'key' : 'fc44b092dbf032c9495ba9db4aff2cdc',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+        var s = document.createElement('script');
+        s.src = 'https://www.highperformanceformat.com/fc44b092dbf032c9495ba9db4aff2cdc/invoke.js';
+        document.getElementById('mobile-ad-container').appendChild(s);
+      })();
     `;
 
-    const invokeScript = document.createElement("script");
-    invokeScript.src =
-      "https://www.highperformanceformat.com/fc44b092dbf032c9495ba9db4aff2cdc/invoke.js";
-
-    containerRef.current.appendChild(optionsScript);
-    containerRef.current.appendChild(invokeScript);
+    containerRef.current.appendChild(script);
   }, []);
 
   useEffect(() => {
@@ -39,6 +38,7 @@ export function MobileAd() {
   return (
     <div
       ref={containerRef}
+      id="mobile-ad-container"
       className="flex justify-center md:hidden bg-black"
       style={{ width: "100%", height: 50 }}
     />

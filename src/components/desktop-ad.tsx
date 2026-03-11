@@ -10,23 +10,23 @@ export function DesktopAd() {
 
     containerRef.current.innerHTML = "";
 
-    const optionsScript = document.createElement("script");
-    optionsScript.text = `
-      atOptions = {
-        'key' : '9833218a541be5b4bc8c5d2a28bef9ca',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
+    const script = document.createElement("script");
+    script.text = `
+      (function() {
+        atOptions = {
+          'key' : '9833218a541be5b4bc8c5d2a28bef9ca',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+        var s = document.createElement('script');
+        s.src = 'https://www.highperformanceformat.com/9833218a541be5b4bc8c5d2a28bef9ca/invoke.js';
+        document.getElementById('desktop-ad-container').appendChild(s);
+      })();
     `;
 
-    const invokeScript = document.createElement("script");
-    invokeScript.src =
-      "https://www.highperformanceformat.com/9833218a541be5b4bc8c5d2a28bef9ca/invoke.js";
-
-    containerRef.current.appendChild(optionsScript);
-    containerRef.current.appendChild(invokeScript);
+    containerRef.current.appendChild(script);
   }, []);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export function DesktopAd() {
   return (
     <div
       ref={containerRef}
+      id="desktop-ad-container"
       className="hidden md:flex justify-center bg-black"
       style={{ width: "100%", height: 90 }}
     />

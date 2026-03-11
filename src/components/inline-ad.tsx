@@ -10,23 +10,23 @@ export function InlineAd() {
 
     containerRef.current.innerHTML = "";
 
-    const optionsScript = document.createElement("script");
-    optionsScript.text = `
-      atOptions = {
-        'key' : '600c9dfc1de05f87b389e7897fea5a45',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
+    const script = document.createElement("script");
+    script.text = `
+      (function() {
+        atOptions = {
+          'key' : '600c9dfc1de05f87b389e7897fea5a45',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+        var s = document.createElement('script');
+        s.src = 'https://www.highperformanceformat.com/600c9dfc1de05f87b389e7897fea5a45/invoke.js';
+        document.getElementById('inline-ad-container').appendChild(s);
+      })();
     `;
 
-    const invokeScript = document.createElement("script");
-    invokeScript.src =
-      "https://www.highperformanceformat.com/600c9dfc1de05f87b389e7897fea5a45/invoke.js";
-
-    containerRef.current.appendChild(optionsScript);
-    containerRef.current.appendChild(invokeScript);
+    containerRef.current.appendChild(script);
   }, []);
 
   useEffect(() => {
@@ -39,6 +39,7 @@ export function InlineAd() {
     <div className="flex justify-center">
       <div
         ref={containerRef}
+        id="inline-ad-container"
         style={{ width: 300, height: 250 }}
       />
     </div>
