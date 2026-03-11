@@ -72,10 +72,10 @@ function normalizeMarket(raw: RawKalshiMarket): KalshiMarket {
     yes_ask_dollars: toNum(raw.yes_ask_dollars),
     no_bid_dollars: toNum(raw.no_bid_dollars),
     no_ask_dollars: toNum(raw.no_ask_dollars),
-    last_price: toNum(raw.last_price) || Math.round(toNum(raw.last_price_dollars) * 100),
-    last_price_dollars: toNum(raw.last_price_dollars) || toNum(raw.last_price) / 100,
-    previous_price: toNum(raw.previous_price) || Math.round(toNum(raw.previous_price_dollars) * 100),
-    previous_price_dollars: toNum(raw.previous_price_dollars) || toNum(raw.previous_price) / 100,
+    last_price: toNum(raw.last_price),
+    last_price_dollars: toNum(raw.last_price_dollars),
+    previous_price: toNum(raw.previous_price),
+    previous_price_dollars: toNum(raw.previous_price_dollars),
     volume: toNum(raw.volume ?? raw.volume_fp),
     volume_24h: toNum(raw.volume_24h ?? raw.volume_24h_fp ?? 0),
     open_interest: toNum(raw.open_interest),
@@ -178,6 +178,7 @@ export async function getMarkets(params?: {
   status?: string;
   series_ticker?: string;
   event_ticker?: string;
+  mve_filter?: string;
 }): Promise<{ markets: KalshiMarket[]; cursor: string }> {
   const raw = await kalshiFetch<{ markets: RawKalshiMarket[]; cursor: string }>("/markets", {
     limit: params?.limit ?? 200,
@@ -185,6 +186,7 @@ export async function getMarkets(params?: {
     status: params?.status,
     series_ticker: params?.series_ticker,
     event_ticker: params?.event_ticker,
+    mve_filter: params?.mve_filter,
   });
   return {
     markets: (raw.markets || []).map(normalizeMarket),
@@ -192,19 +194,10 @@ export async function getMarkets(params?: {
   };
 }
 
-// Temporary: fetch raw market keys for debugging
-export async function getMarketsRawSample(): Promise<{ keys: string[]; sample: Record<string, unknown> }> {
-  const raw = await kalshiFetch<{ markets: RawKalshiMarket[] }>("/markets", {
-    limit: 1,
-    status: "open",
-  });
-  const m = raw.markets?.[0] || {};
-  return { keys: Object.keys(m), sample: m as Record<string, unknown> };
-}
-
 export async function getAllMarkets(params?: {
   status?: string;
   maxPages?: number;
+  mve_filter?: string;
 }): Promise<KalshiMarket[]> {
   const allMarkets: KalshiMarket[] = [];
   let cursor: string | undefined;
@@ -216,6 +209,7 @@ export async function getAllMarkets(params?: {
       limit: 200,
       cursor,
       status: params?.status,
+      mve_filter: params?.mve_filter,
     });
     allMarkets.push(...result.markets);
     cursor = result.cursor || undefined;

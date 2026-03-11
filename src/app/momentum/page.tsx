@@ -1,4 +1,4 @@
-import { getAllMarkets, getMarketsRawSample } from "@/lib/kalshi";
+import { getAllMarkets } from "@/lib/kalshi";
 import { buildMomentum } from "@/lib/signals";
 import { MomentumTable } from "@/components/momentum-table";
 import { Zap } from "lucide-react";
@@ -14,12 +14,8 @@ export default async function MomentumPage() {
   let error: string | null = null;
   const fetchedAt = new Date();
 
-  let debugSample = "";
   try {
-    const rawSample = await getMarketsRawSample();
-    debugSample = JSON.stringify(rawSample.sample);
-
-    const markets = await getAllMarkets({ status: "open", maxPages: 15 });
+    const markets = await getAllMarkets({ status: "open", mve_filter: "exclude" });
     totalMarkets = markets.length;
     movers = buildMomentum(markets);
   } catch (e) {
@@ -65,9 +61,7 @@ export default async function MomentumPage() {
 
       {!error && movers.length === 0 && (
         <div className="py-12 text-center text-muted-foreground">
-          <p>No price movements found. Markets may be closed or inactive.</p>
-          <p className="mt-2 text-xs">Debug: {totalMarkets} markets fetched</p>
-          <p className="mt-1 text-xs break-all">{debugSample}</p>
+          No price movements found. Markets may be closed or inactive.
         </div>
       )}
     </div>
