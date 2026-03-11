@@ -14,9 +14,19 @@ export default async function MomentumPage() {
   let error: string | null = null;
   const fetchedAt = new Date();
 
+  let debugSample = "";
   try {
     const markets = await getAllMarkets({ status: "open", maxPages: 15 });
     totalMarkets = markets.length;
+    if (markets.length > 0) {
+      const s = markets[0];
+      debugSample = JSON.stringify({
+        last_price: s.last_price,
+        last_price_dollars: s.last_price_dollars,
+        previous_price: s.previous_price,
+        previous_price_dollars: s.previous_price_dollars,
+      });
+    }
     movers = buildMomentum(markets);
   } catch (e) {
     error = e instanceof Error ? e.message : "Failed to load market data";
@@ -63,6 +73,7 @@ export default async function MomentumPage() {
         <div className="py-12 text-center text-muted-foreground">
           <p>No price movements found. Markets may be closed or inactive.</p>
           <p className="mt-2 text-xs">Debug: {totalMarkets} markets fetched</p>
+          <p className="mt-1 text-xs break-all">{debugSample}</p>
         </div>
       )}
     </div>
