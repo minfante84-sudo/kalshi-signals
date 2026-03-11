@@ -69,12 +69,6 @@ export function Navbar() {
           >
             FAQ
           </Link>
-          <Link
-            href="/contact"
-            className="hidden sm:inline text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Contact
-          </Link>
           {/* More dropdown on mobile only */}
           <div className="relative sm:hidden" ref={menuRef}>
             <button
@@ -106,13 +100,6 @@ export function Navbar() {
                   className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
                 >
                   FAQ
-                </Link>
-                <Link
-                  href="/contact"
-                  onClick={() => setOpen(false)}
-                  className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
-                >
-                  Contact
                 </Link>
               </div>
             )}
