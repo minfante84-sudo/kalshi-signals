@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { MarketInflow, formatDollars, formatNumber } from "@/lib/signals";
 import { ArrowUpDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
-import { MobileInlineAd } from "@/components/mobile-inline-ad";
+
 
 function formatTitle(title: string): string {
   return title
@@ -102,7 +102,6 @@ export function PopularTable({ inflows }: { inflows: MarketInflow[] }) {
           const { market } = inflow;
           return (
             <div key={market.ticker}>
-              {index === 10 && <MobileInlineAd src="//conventionalresponse.com/bKXDVis.dQGBlW0aYWWgcn/iepmS9Xu/ZVUZlCkdP-TxYi4pNLT/QNyWNmDYU/tONVjrgc1cNgD/IK0HOYQK" />}
               <Link
                 href={`/market/${market.ticker}`}
                 className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"

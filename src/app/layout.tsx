@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/navbar";
-import { MobileAd } from "@/components/mobile-ad";
+
 import Script from "next/script";
 import "./globals.css";
 
@@ -95,7 +95,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="sticky top-0 z-50">
-          <MobileAd />
           <Navbar />
         </div>
         <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>

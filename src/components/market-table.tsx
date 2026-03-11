@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { MarketSignal, formatDollars, formatNumber, formatPercent } from "@/lib/signals";
 import { ArrowUpDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
-import { MobileInlineAd } from "@/components/mobile-inline-ad";
+
 
 
 function formatTitle(title: string): string {
@@ -155,7 +155,6 @@ export function MarketTable({ signals }: { signals: MarketSignal[] }) {
 
           return (
             <div key={market.ticker}>
-              {index === 10 && <MobileInlineAd />}
               <Link
                 href={`/market/${market.ticker}`}
                 className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"
