@@ -54,6 +54,10 @@ function toNum(val: unknown): number {
   return 0;
 }
 
+function toCents(val: unknown): number {
+  return Math.round(toNum(val) * 100);
+}
+
 function normalizeMarket(raw: RawKalshiMarket): KalshiMarket {
   return {
     ticker: String(raw.ticker ?? ""),
@@ -64,21 +68,21 @@ function normalizeMarket(raw: RawKalshiMarket): KalshiMarket {
     market_type: String(raw.market_type ?? "binary"),
     status: String(raw.status ?? ""),
     result: String(raw.result ?? ""),
-    yes_bid: toNum(raw.yes_bid),
-    yes_ask: toNum(raw.yes_ask),
-    no_bid: toNum(raw.no_bid),
-    no_ask: toNum(raw.no_ask),
+    yes_bid: toCents(raw.yes_bid_dollars ?? raw.yes_bid),
+    yes_ask: toCents(raw.yes_ask_dollars ?? raw.yes_ask),
+    no_bid: toCents(raw.no_bid_dollars ?? raw.no_bid),
+    no_ask: toCents(raw.no_ask_dollars ?? raw.no_ask),
     yes_bid_dollars: toNum(raw.yes_bid_dollars),
     yes_ask_dollars: toNum(raw.yes_ask_dollars),
     no_bid_dollars: toNum(raw.no_bid_dollars),
     no_ask_dollars: toNum(raw.no_ask_dollars),
-    last_price: toNum(raw.last_price),
+    last_price: toCents(raw.last_price_dollars ?? raw.last_price),
     last_price_dollars: toNum(raw.last_price_dollars),
-    previous_price: toNum(raw.previous_price),
+    previous_price: toCents(raw.previous_price_dollars ?? raw.previous_price),
     previous_price_dollars: toNum(raw.previous_price_dollars),
-    volume: toNum(raw.volume ?? raw.volume_fp),
-    volume_24h: toNum(raw.volume_24h ?? raw.volume_24h_fp ?? 0),
-    open_interest: toNum(raw.open_interest),
+    volume: toNum(raw.volume_fp ?? raw.volume),
+    volume_24h: toNum(raw.volume_24h_fp ?? raw.volume_24h ?? 0),
+    open_interest: toNum(raw.open_interest_fp ?? raw.open_interest),
     open_interest_fp: toNum(raw.open_interest_fp),
     notional_value_dollars: toNum(raw.notional_value_dollars),
     close_time: String(raw.close_time ?? ""),
