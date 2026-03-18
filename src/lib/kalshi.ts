@@ -116,10 +116,32 @@ export interface KalshiTrade {
   trade_id: string;
   ticker: string;
   count: number;
-  yes_price: number;
-  no_price: number;
+  yes_price: number; // cents (0-100)
+  no_price: number;  // cents (0-100)
   created_time: string;
   taker_side: string;
+}
+
+interface RawKalshiTrade {
+  trade_id: string;
+  ticker: string;
+  count_fp: string;
+  yes_price_dollars: string;
+  no_price_dollars: string;
+  created_time: string;
+  taker_side: string;
+}
+
+function normalizeTrade(raw: RawKalshiTrade): KalshiTrade {
+  return {
+    trade_id: raw.trade_id,
+    ticker: raw.ticker,
+    count: parseFloat(raw.count_fp) || 0,
+    yes_price: Math.round(parseFloat(raw.yes_price_dollars) * 100) || 0,
+    no_price: Math.round(parseFloat(raw.no_price_dollars) * 100) || 0,
+    created_time: raw.created_time,
+    taker_side: raw.taker_side,
+  };
 }
 
 // --- API Functions ---
@@ -240,11 +262,15 @@ export async function getTrades(params?: {
   limit?: number;
   cursor?: string;
 }): Promise<{ trades: KalshiTrade[]; cursor: string }> {
-  return kalshiFetch("/markets/trades", {
+  const raw = await kalshiFetch<{ trades: RawKalshiTrade[]; cursor: string }>("/markets/trades", {
     ticker: params?.ticker,
     limit: params?.limit ?? 50,
     cursor: params?.cursor,
   });
+  return {
+    trades: raw.trades.map(normalizeTrade),
+    cursor: raw.cursor,
+  };
 }
 
 export async function getAllTrades(params?: {

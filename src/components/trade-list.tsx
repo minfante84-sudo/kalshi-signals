@@ -53,7 +53,7 @@ export function TradeList({ trades }: { trades: KalshiTrade[] }) {
                 </span>
               </TableCell>
               <TableCell className="font-mono">
-                {(trade.yes_price * 100).toFixed(0)}&cent;
+                {trade.yes_price}&cent;
               </TableCell>
               <TableCell className="font-mono">{trade.count}</TableCell>
             </TableRow>
