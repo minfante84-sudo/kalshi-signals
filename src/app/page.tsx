@@ -3,7 +3,7 @@ import { rankTradesByTicker, buildSignals } from "@/lib/signals";
 import { MarketTable } from "@/components/market-table";
 import { DollarSign } from "lucide-react";
 import { RefreshButton } from "@/components/refresh-button";
-import { InlineAd } from "@/components/inline-ad";
+
 
 export const dynamic = "force-dynamic";
 export const revalidate = 30;
@@ -93,8 +93,6 @@ export default async function SignalsDashboard() {
           No active signals found. Markets may be closed or inactive.
         </div>
       )}
-
-      <InlineAd />
 
       {/* Informational sections for SEO and user education */}
       <section className="space-y-4 rounded-lg border border-border p-6">

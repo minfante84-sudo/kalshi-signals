@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/navbar";
-import { MobileAd } from "@/components/mobile-ad";
-import { DesktopAd } from "@/components/desktop-ad";
 import { Footer } from "@/components/footer";
-
 import Script from "next/script";
 import "./globals.css";
 
@@ -80,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-<Script
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-L2SG61SW32"
           strategy="afterInteractive"
@@ -97,11 +94,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="sticky top-0 z-50">
-          <MobileAd />
-          <DesktopAd />
-          <Navbar />
-        </div>
+        <Navbar />
         <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
         <Footer />
         <Analytics />

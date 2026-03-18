@@ -14,7 +14,6 @@ import { MarketSignal, formatDollars, formatNumber, formatPercent } from "@/lib/
 import { ArrowUpDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 
 
-
 function formatTitle(title: string): string {
   // Strip "yes "/"no " prefixes from each leg and join with " + "
   return title
