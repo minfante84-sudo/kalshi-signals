@@ -258,7 +258,28 @@ export async function getSeries(seriesTicker: string): Promise<{ series: { ticke
 }
 
 export async function getOrderbook(ticker: string): Promise<{ orderbook: KalshiOrderbook }> {
-  return kalshiFetch(`/markets/${ticker}/orderbook`, undefined, 10);
+  const raw = await kalshiFetch<Record<string, unknown>>(`/markets/${ticker}/orderbook`, undefined, 10);
+
+  // Kalshi now returns orderbook_fp with yes_dollars/no_dollars as string pairs
+  const ob = (raw.orderbook_fp ?? raw.orderbook ?? {}) as Record<string, unknown>;
+  const isDollars = !!ob.yes_dollars || !!ob.no_dollars;
+  const yesSrc = ((isDollars ? ob.yes_dollars : ob.yes) ?? []) as (string[] | number[])[];
+  const noSrc = ((isDollars ? ob.no_dollars : ob.no) ?? []) as (string[] | number[])[];
+
+  function toPricePairs(entries: (string[] | number[])[]): [number, number][] {
+    return entries.map(([price, qty]) => [
+      isDollars ? Math.round(Number(price) * 100) : Number(price),
+      Math.round(Number(qty)),
+    ]);
+  }
+
+  return {
+    orderbook: {
+      ticker,
+      yes: toPricePairs(yesSrc),
+      no: toPricePairs(noSrc),
+    },
+  };
 }
 
 export async function getTrades(params?: {
