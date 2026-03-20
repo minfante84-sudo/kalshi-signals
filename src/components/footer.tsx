@@ -6,6 +6,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
         <p>&copy; {new Date().getFullYear()} Kalshi Signals. Not affiliated with Kalshi.</p>
         <nav className="flex items-center gap-4">
+          <Link href="/blog" className="hover:text-foreground transition-colors">
+            Blog
+          </Link>
           <Link href="/privacy" className="hover:text-foreground transition-colors">
             Privacy Policy
           </Link>
