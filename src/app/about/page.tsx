@@ -55,7 +55,7 @@ export default function AboutPage() {
               positions, so you can see where the crowd is putting its money.
             </li>
             <li>
-              <strong className="text-foreground">Momentum</strong> — Spot
+              <strong className="text-foreground">Trending</strong> — Spot
               markets with the biggest price swings in the last 24 hours.
               Rising or falling prices can indicate shifting sentiment.
             </li>

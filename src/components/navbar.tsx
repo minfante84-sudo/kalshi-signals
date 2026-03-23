@@ -45,10 +45,10 @@ export function Navbar() {
             Blog
           </Link>
           <Link
-            href="/momentum"
+            href="/trending"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            Momentum
+            Trending
           </Link>
           <Link
             href="/new-markets"

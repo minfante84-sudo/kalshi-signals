@@ -29,7 +29,7 @@ export default async function MomentumPage() {
         <div>
           <h1 className="flex items-center gap-2 text-xl sm:text-2xl font-bold">
             <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-chart-1" />
-            Momentum
+            Trending
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Markets with the biggest price swings in the last 24 hours —

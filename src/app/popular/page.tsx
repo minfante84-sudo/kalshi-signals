@@ -89,6 +89,45 @@ export default async function MostPopularPage() {
           No active markets found. Markets may be closed or inactive.
         </div>
       )}
+
+      <section className="space-y-4 rounded-lg border border-border p-6">
+        <h2 className="text-lg font-semibold">How to Read Popular Markets</h2>
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            This table ranks markets by <strong className="text-foreground">Total Inflow</strong> —
+            the total dollar amount traded in each market over the last 24 hours. Markets
+            at the top are attracting the most real-money activity, which often reflects
+            breaking news, upcoming events, or shifting public sentiment.
+          </p>
+          <p>
+            <strong className="text-foreground">Yes Inflow</strong> and{" "}
+            <strong className="text-foreground">No Inflow</strong> break down the total
+            by direction. When one side significantly outweighs the other, it can indicate
+            lopsided conviction — traders are piling into one outcome. A market with heavy
+            Yes inflow and a rising price suggests growing confidence in that outcome, while
+            heavy No inflow signals skepticism.
+          </p>
+          <p>
+            <strong className="text-foreground">Trades</strong> shows how many individual
+            transactions have occurred. A high trade count with a low total inflow means
+            many small bets, which is typical of retail interest. A low trade count with
+            high inflow suggests fewer, larger positions — often a sign of more informed
+            or institutional traders.
+          </p>
+          <p>
+            <strong className="text-foreground">Price</strong> reflects the market&apos;s
+            current implied probability. A price of 72&cent; roughly means the crowd
+            estimates a 72% chance the event happens. Compare the price to the Yes/No
+            inflow split to gauge whether the money flow aligns with or diverges from
+            the current consensus.
+          </p>
+          <p>
+            Use the column headers to sort by any metric and the search bar to filter
+            by market name or ticker. Click any row to see the full market details,
+            including an order book and price history.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
