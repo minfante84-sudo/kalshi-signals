@@ -9,6 +9,93 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "kalshi-trading-strategies-pros-use",
+    title: "7 Kalshi Trading Strategies That the Pros Use",
+    description:
+      "Learn the most popular Kalshi trading strategies used by experienced prediction market traders — from momentum plays and news catalysts to hedging, arbitrage, and portfolio construction.",
+    date: "2026-03-23",
+    readingTime: "8 min read",
+    content: `Prediction markets on Kalshi offer a unique set of opportunities that look nothing like traditional stock trading. Contracts resolve to $1.00 or $0.00, time horizons are often days or weeks rather than months, and the edge comes from understanding probability rather than earnings reports. The traders who consistently profit on Kalshi have developed specific strategies tailored to this environment. Here are seven of the most popular.
+
+## 1. News Catalyst Trading
+
+The single most common strategy among active Kalshi traders is positioning around scheduled news events. Economic data releases, Fed meetings, court rulings, earnings announcements, and political events all create predictable windows where prediction market prices will move sharply.
+
+The approach is straightforward: identify an upcoming catalyst, form a view on the likely outcome before the market has fully priced it in, and take a position. For example, if the market gives a 40% chance that inflation will come in above a certain threshold, but your analysis of leading indicators suggests the real probability is closer to 60%, you buy Yes contracts before the data release.
+
+The key to this strategy is preparation. Professional traders build watchlists of upcoming events, track the relevant data inputs, and pre-calculate what different outcomes would mean for contract prices. When the news hits, they are ready to act immediately — or they have already positioned themselves in advance.
+
+**When it works best:** Markets tied to scheduled events with clear resolution criteria, where you have an analytical edge on the likely outcome.
+
+## 2. Momentum and Trend Following
+
+When a prediction market contract starts moving sharply in one direction — say, jumping from 30 cents to 50 cents over a few hours — momentum traders look to ride the trend. The logic is that large price moves in prediction markets often reflect genuine new information, and the market may not fully adjust in a single move. Early movers push the price partway to its new equilibrium, and the follow-through from additional traders who are slower to react pushes it further.
+
+This strategy is particularly effective after breaking news or surprising developments. If a major political event shifts the probability of an outcome, the initial price move often captures only part of the adjustment. Traders who recognize the significance of the event early can enter during the initial move and profit from the continued repricing.
+
+The risk is jumping into a move that quickly reverses. To manage this, momentum traders typically use stop-loss levels — mental or actual — and pay close attention to volume. High volume behind a move adds conviction; low volume suggests the move may be fragile.
+
+**When it works best:** Fast-moving markets reacting to breaking news, where the initial move is large but the full adjustment takes time. The Trending page on Kalshi Signals is a good starting point for spotting these setups.
+
+## 3. Fading Overreactions
+
+The flip side of momentum trading is fading — taking the opposite side of a move you believe has gone too far. Prediction markets, like all markets, are subject to overreaction. When surprising news hits, the initial price move can overshoot the rational level as traders panic-buy or panic-sell.
+
+Experienced traders watch for the signs of an overreaction: a very large, very fast price move on relatively low volume, driven by emotional reaction rather than careful analysis. If a contract drops from 70 cents to 40 cents on a single piece of bad news, but the news does not actually change the fundamental probability by that much, buying at 40 cents and waiting for the reversion can be profitable.
+
+This strategy requires strong conviction and a willingness to go against the crowd. It also requires discipline — not every large move is an overreaction. Sometimes the market is right, and the new price reflects genuine new information. The key is distinguishing between the two.
+
+**When it works best:** Markets that have moved sharply on emotional or low-volume trading, where your fundamental analysis suggests the move has overshot.
+
+## 4. Spread and Arbitrage Trading
+
+Kalshi often lists multiple related contracts — for example, several contracts on the same economic indicator at different threshold levels, or contracts on both a primary election and a general election. These related contracts should be priced consistently with one another, but in practice, small inconsistencies arise as different contracts attract different levels of attention and liquidity.
+
+Spread traders exploit these inconsistencies. If Contract A implies a 60% probability and Contract B implies a 45% probability, but the two events are mutually exclusive and exhaustive, the probabilities should add up to 100%. If they add up to 105%, one or both contracts are mispriced, and a trader can sell the overpriced side and buy the underpriced side to lock in a small but reliable profit.
+
+This strategy requires careful attention to contract specifications and resolution rules. The profit per trade is typically small — a few cents per contract — but the risk is also low when executed correctly, and the strategy scales well with volume.
+
+**When it works best:** Related markets on the same event, particularly when one contract is more liquid and heavily traded than another.
+
+## 5. Market Making in Illiquid Markets
+
+Some of the best risk-adjusted returns on Kalshi come from acting as a market maker in less liquid contracts. Market makers post both a bid (an offer to buy) and an ask (an offer to sell), earning the spread between them. If you post a bid at 45 cents and an ask at 55 cents, and both orders get filled, you earn 10 cents per contract regardless of the final outcome.
+
+The challenge is managing inventory risk. If the true probability shifts sharply in one direction, you may end up holding a large position on the losing side. Professional market makers mitigate this by adjusting their quotes as new information arrives, keeping their bid-ask spread wide enough to compensate for the risk, and limiting their total exposure to any single market.
+
+This strategy is most profitable in markets that are active enough to generate regular trading but not so liquid that the spread is already compressed to 1-2 cents by other market makers.
+
+**When it works best:** Moderately active markets with spreads of 5 cents or more, where you can manage your quotes actively.
+
+## 6. Portfolio Construction and Diversification
+
+Rather than concentrating on a single market, many professional Kalshi traders build diversified portfolios of positions across many different contracts. The logic is the same as in traditional investing: by spreading your capital across independent events, you reduce the impact of any single loss and smooth your overall returns.
+
+A typical approach is to identify 10-20 contracts where you believe you have an edge, size each position according to your confidence level, and let the portfolio run. Because prediction market contracts resolve to clear outcomes, your results over time will converge toward your actual edge — if you are consistently buying contracts at 40 cents that resolve at a true probability of 50%, the math works in your favor over a large sample.
+
+Kelly criterion — a formula for optimal bet sizing based on your edge and the odds — is widely used among serious prediction market traders. The basic idea is to bet more when your edge is larger and less when it is smaller, while never risking so much on a single bet that a loss would cripple your portfolio.
+
+**When it works best:** Traders with analytical edge across many markets who want to maximize long-term growth while managing downside risk.
+
+## 7. Hedging Real-World Exposure
+
+One of the most underappreciated uses of Kalshi is hedging — using prediction market contracts to offset real-world financial risk. If you work in an industry that is sensitive to a specific policy outcome, or if you have investments that would be affected by a particular event, you can use Kalshi contracts to reduce your exposure.
+
+For example, if you hold a significant amount of cryptocurrency and are worried about a regulatory crackdown, you could buy Yes contracts on a market asking whether new crypto regulations will be enacted. If the regulation happens and your crypto holdings lose value, the prediction market payout partially offsets your loss. If the regulation does not happen, your crypto holdings retain their value, and the cost of the hedge is the price you paid for the contracts.
+
+This is the same logic behind buying insurance or using options in traditional finance. The goal is not to profit from the prediction market position itself, but to reduce the overall volatility of your financial situation.
+
+**When it works best:** When you have real-world financial exposure to an event that has a corresponding Kalshi market.
+
+## Combining Strategies
+
+The most successful Kalshi traders rarely rely on a single strategy. Instead, they combine several approaches based on market conditions. During quiet periods, they might focus on market making and spread trading. When a major news event is approaching, they shift to catalyst trading. When they spot an overreaction, they fade it. And throughout, they maintain a diversified portfolio and manage risk carefully.
+
+The common thread across all of these strategies is that they require preparation, discipline, and a willingness to do the work that most casual traders will not do. The edge in prediction markets comes from having a more accurate view of probability than the market — and from executing on that view consistently, across many trades, over time.
+
+Tools like Kalshi Signals can help by surfacing the data you need: which markets are trending, where the money is flowing, and which new markets are just getting started. But the strategy is yours to build.`,
+  },
+  {
     slug: "what-are-prediction-markets",
     title: "What Are Prediction Markets and How Do They Work?",
     description:
