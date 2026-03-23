@@ -64,6 +64,49 @@ export default async function MomentumPage() {
           No price movements found. Markets may be closed or inactive.
         </div>
       )}
+
+      <section className="space-y-4 rounded-lg border border-border p-6">
+        <h2 className="text-lg font-semibold">How to Read Trending Markets</h2>
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            This table surfaces the markets with the largest price movements over
+            the last 24 hours. Markets are ranked by absolute price change, so both
+            sharp rises and steep drops appear at the top. These are the markets where
+            sentiment is shifting the fastest.
+          </p>
+          <p>
+            <strong className="text-foreground">Price</strong> shows the current
+            market price in cents. Since each contract pays out $1.00 or $0.00, the
+            price doubles as an implied probability — a price of 65&cent; means the
+            crowd estimates roughly a 65% chance the event occurs.
+          </p>
+          <p>
+            <strong className="text-foreground">Change</strong> is the raw cent
+            movement over the last 24 hours. A positive number (green) means the
+            market has moved toward &ldquo;Yes,&rdquo; while a negative number (red)
+            means it has moved toward &ldquo;No.&rdquo; Larger swings often follow
+            breaking news, official announcements, or major shifts in public opinion.
+          </p>
+          <p>
+            <strong className="text-foreground">% Change</strong> puts that movement
+            in context. A 5&cent; swing on a market priced at 10&cent; is a 50% move
+            and far more significant than a 5&cent; swing on a market priced at 80&cent;.
+            Sorting by % Change helps you spot outsized moves in lower-priced markets
+            that might otherwise go unnoticed.
+          </p>
+          <p>
+            <strong className="text-foreground">Volume 24h</strong> shows how many
+            contracts have traded. High volume alongside a big price move adds
+            conviction — it means the shift is backed by real trading activity, not
+            just a handful of trades in a thin market.
+          </p>
+          <p>
+            Use the column headers to re-sort by any metric and the search bar to
+            filter by market name or ticker. Click any row to view full market
+            details including price history and the order book.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
