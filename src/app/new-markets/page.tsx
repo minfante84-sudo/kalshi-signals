@@ -68,6 +68,49 @@ export default async function NewMarketsPage() {
           No new markets found.
         </div>
       )}
+
+      <section className="space-y-4 rounded-lg border border-border p-6">
+        <h2 className="text-lg font-semibold">How to Read New Markets</h2>
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+          <p>
+            This table shows the most recently listed markets on Kalshi, sorted by
+            listing date. New markets give you the chance to form a view before the
+            crowd arrives and prices settle, which can mean better entry points if
+            you have early conviction on an outcome.
+          </p>
+          <p>
+            <strong className="text-foreground">Listed</strong> tells you how long
+            ago the market was created. Markets listed minutes or hours ago may still
+            be finding their initial price, while markets a day or two old have
+            usually begun to attract steady trading activity.
+          </p>
+          <p>
+            <strong className="text-foreground">Price</strong> is the last traded
+            price in cents and serves as the market&apos;s current implied probability.
+            On brand-new markets, the price can be volatile — a small number of early
+            trades can move it significantly before deeper liquidity builds up.
+          </p>
+          <p>
+            <strong className="text-foreground">Bid / Ask</strong> shows the best
+            available buy and sell prices. The gap between them — the spread — tells
+            you about liquidity. A tight spread (e.g., 48&cent; / 52&cent;) means you
+            can enter or exit close to the current price. A wide spread (e.g.,
+            30&cent; / 70&cent;) means the market is thin and you may want to use
+            limit orders rather than market orders.
+          </p>
+          <p>
+            <strong className="text-foreground">Volume</strong> shows how many
+            contracts have traded. Low volume on a new market is expected, but watch
+            for markets where volume is climbing quickly — that early interest often
+            signals a market that is about to become widely followed.
+          </p>
+          <p>
+            Use the column headers to re-sort by any metric and the search bar to
+            filter by market name or ticker. Click any row to view full market
+            details including price history and the order book.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
