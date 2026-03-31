@@ -9,6 +9,83 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "sports-trading-prediction-markets-legal-battle",
+    title: "The Sports Trading Battle: What Prediction Markets Are Up Against",
+    description:
+      "A breakdown of the legal, regulatory, and political challenges facing Kalshi and other prediction markets as they push into sports event contracts — and why the outcome matters for every trader.",
+    date: "2026-03-31",
+    readingTime: "9 min read",
+    content: `Sports trading has become the single most important — and most contested — frontier for prediction markets. In just over a year, Kalshi went from launching its first sports event contracts to processing billions in volume and becoming one of the largest sports trading platforms in the country. But that growth has triggered a wave of lawsuits, state enforcement actions, and proposed legislation that could reshape the entire industry. Here is where things stand.
+
+## The Rise of Sports on Prediction Markets
+
+Kalshi launched sports event contracts on January 24, 2025, and the CFTC took no enforcement action. The platform quickly added contracts on the NFL, NBA, WNBA, MLB, NHL, March Madness, Champions League, and more — including single-game outcomes and player propositions. The growth was explosive: sports accounted for roughly 89% of Kalshi's $263.5 million in fee revenue in 2025, with total trading volume of approximately $22.88 billion for the year.
+
+To put that in context, Kalshi processed over $1 billion in Super Bowl trading alone and more than $800 million in March Madness 2026 volume. By volume, Kalshi is now effectively the seventh-largest sports trading operator in the United States.
+
+## The CFTC's Policy Reversal
+
+The regulatory picture shifted dramatically with the change in presidential administration. Under the previous CFTC leadership, a proposed rule published in June 2024 would have banned event contracts on sports and politics entirely. The new CFTC Chairman, Michael Selig, reversed course.
+
+On January 29, 2026, the CFTC scrapped the proposed ban. Selig called the prior proposal "the prior administration's frolic into merit regulation." By February 4, the agency formally withdrew the rule. Then on March 12, 2026, the CFTC's Division of Market Oversight issued Staff Advisory Letter No. 26-08, signaling a supportive stance toward prediction markets and sports-based event contracts.
+
+The agency also released an Advance Notice of Proposed Rulemaking seeking public comment — with a deadline of April 30, 2026 — on how to regulate event contracts going forward. Notably, the CFTC has publicly declared it will defend its "exclusive jurisdiction" over event contracts, even as states push their own enforcement actions.
+
+## The State Backlash: 20+ Lawsuits and Counting
+
+While the federal regulator has moved toward acceptance, state regulators have pushed back hard. Kalshi now faces more than 20 civil lawsuits, and the courts are deeply divided.
+
+**States that have taken enforcement action include Nevada, New Jersey, Maryland, New York, Michigan, Massachusetts, and Washington.** The Nevada Gaming Control Board was the first to send a cease-and-desist letter. Other states followed with their own demands, some also targeting Robinhood for its role in distributing Kalshi contracts.
+
+Michigan's attorney general filed a lawsuit on March 5, 2026, alleging violations of the Michigan Lawful Sports Betting Act. Washington's attorney general sued on March 28, 2026, seeking to shut down Kalshi's operations in the state entirely. And in November 2025, a putative nationwide class of Kalshi users filed the first major consumer class action against a prediction market, alleging the platform violated state gambling laws and misled customers.
+
+## A Divided Judiciary
+
+The core legal question is whether the Commodity Exchange Act gives the CFTC exclusive jurisdiction over these contracts — which would preempt state gambling laws — or whether states retain the authority to regulate what they view as sports betting.
+
+**Courts that have sided with Kalshi** include federal courts in Nevada, New Jersey, and Tennessee. The Tennessee ruling, issued on February 19, 2026, found that sports event contracts are likely swaps subject to exclusive federal jurisdiction. A federal court in Northern California denied tribal governments' request for injunctive relief, holding that the Indian Gaming Regulatory Act does not apply to platforms like Kalshi and that federal law exempts CFTC-regulated transactions from "illegal internet gambling."
+
+**Courts that have ruled against Kalshi** include a federal court in Maryland, which in August 2025 held that Congress did not clearly intend to displace state gambling authority, and a Massachusetts state court, which in January 2026 issued a preliminary injunction barring sports-related contracts for in-state users.
+
+The result is a growing patchwork of contradictory rulings with no clear resolution in sight until an appellate court or the Supreme Court weighs in.
+
+## The Arguments on Each Side
+
+**The case for prediction markets offering sports contracts** centers on federal preemption and market structure. Kalshi argues its contracts are financial instruments — specifically swaps — for risk management and information discovery, regulated by the CFTC as a Designated Contract Market. A unified federal approach provides one rulebook instead of 50. Banning sports contracts on regulated platforms, they argue, would push activity offshore to unregulated venues, making consumers less safe, not more.
+
+**The case against** focuses on consumer protection and the integrity of sports. States argue that "the purchase of the contract is indistinguishable from the act of placing a sports wager," as the Maryland Lottery and Gaming Control Commission put it. Critics note that prediction market platforms operate without the age verification (users can be 18, versus 21 for most state-regulated sportsbooks), addiction protections, integrity monitoring, and tax collection that legal sportsbooks are required to maintain.
+
+## What the Sports Leagues Think
+
+The major professional sports leagues are not unified in their response.
+
+The NFL has urged Kalshi and Polymarket to pull certain markets, expressing concern about contracts tied to events that can be "influenced by individuals, known in advance, or connected to sensitive topics like injuries and officiating." The NBA has warned that expanding into individual player propositions poses a "greater threat to sporting integrity."
+
+MLB, on the other hand, took a different approach entirely. On March 19, 2026, it named Polymarket its official prediction market exchange and signed a memorandum of understanding with CFTC Chairman Selig — the first such agreement between a professional sports league and a federal regulator. The CFTC has signaled it will "defer to leagues" on certain integrity guardrails.
+
+## Congressional Action
+
+Two major bills have been introduced in Congress, both aiming to restrict sports trading on prediction markets.
+
+The **Prediction Markets Are Gambling Act**, introduced by Senators Adam Schiff and John Curtis in a bipartisan effort, would prohibit CFTC-registered entities from listing any prediction contract that resembles a sports bet or casino-style game. The **STOP Corrupt Bets Act**, introduced by Senators Jeff Merkley and Elizabeth Warren along with Representative Jamie Raskin, would ban event contracts on elections, sports, government actions, and military operations.
+
+Neither bill has passed as of March 2026, but they signal that the political pressure is real and bipartisan.
+
+## What This Means for Traders
+
+For anyone trading on Kalshi or other prediction markets, the sports trading battle creates both uncertainty and opportunity.
+
+**The uncertainty** is obvious: if courts or Congress ultimately side with the states, sports contracts could be pulled or restricted in certain jurisdictions. Traders should be aware that the regulatory landscape is actively shifting and that access to sports markets may vary by state.
+
+**The opportunity** lies in the fact that this legal and regulatory ambiguity creates information asymmetry. Markets may not fully price in the probability of adverse regulatory outcomes — or they may overreact to headlines. Traders who follow the legal developments closely can identify mispricings in both sports and non-sports contracts that may be affected by regulatory shifts.
+
+The broader prediction market ecosystem — economic data, weather, politics, and more — is far less legally contested. But the resolution of the sports trading question will set the precedent for how much regulatory latitude prediction markets have going forward.
+
+## The Bottom Line
+
+The sports trading battle is the defining fight for the prediction market industry. The CFTC is firmly in Kalshi's corner for now, but more than 20 lawsuits, two congressional bills, and a divided judiciary make the outcome far from certain. Whether you trade sports contracts or not, every prediction market participant has a stake in how this plays out.`,
+  },
+  {
     slug: "kalshi-trading-strategies-pros-use",
     title: "7 Kalshi Trading Strategies That the Pros Use",
     description:
