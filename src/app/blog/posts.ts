@@ -9,6 +9,105 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-trade-oil-markets-on-kalshi",
+    title: "How to Play the Oil Market on Kalshi",
+    description:
+      "A practical guide to trading oil price contracts on Kalshi — from understanding how oil markets move to building strategies around EIA reports, OPEC decisions, and geopolitical risk.",
+    date: "2026-04-02",
+    readingTime: "8 min read",
+    content: `Oil is one of the most actively watched commodities in the world — and one of the most tradable markets on Kalshi. Whether crude is surging on a supply disruption or sliding on weak demand data, Kalshi offers a way to express a view on where oil prices are headed without needing a futures account, margin requirements, or exposure to unlimited downside. Here is how to approach it.
+
+## Why Oil Markets Matter
+
+Crude oil prices ripple through the entire economy. They affect gas prices, inflation readings, airline profitability, consumer spending, and geopolitical dynamics. When oil moves sharply, it tends to move other markets with it — equities, currencies, and especially inflation-linked prediction contracts on Kalshi.
+
+For traders, oil is attractive because it is driven by a clear set of supply and demand factors that are observable and researchable. Unlike some prediction markets where the outcome is binary and opaque, oil price movements follow identifiable catalysts. That makes it possible to build a genuine analytical edge.
+
+## How Oil Contracts Work on Kalshi
+
+Kalshi lists contracts that ask whether the price of crude oil (typically WTI — West Texas Intermediate) will be above or below a certain level by a specific date. For example, a contract might ask: "Will WTI crude oil be above $75 per barrel on April 30?"
+
+Like all Kalshi contracts, these resolve to $1.00 if the answer is Yes and $0.00 if the answer is No. If you think oil will be above the threshold, you buy Yes contracts. If you think it will stay below, you buy No contracts. Your maximum risk is what you pay for the contract — there are no margin calls and no unlimited downside.
+
+Kalshi typically offers multiple strike levels for the same expiration, so you can choose the threshold that matches your view. A contract at a price well below the current market will be priced high (because it is likely to resolve Yes), while a contract at a price well above the current market will be cheap (because it is less likely). This structure lets you calibrate your risk and reward precisely.
+
+## The Key Drivers of Oil Prices
+
+To trade oil contracts effectively, you need to understand what moves the market. Oil prices are determined by the balance of global supply and demand, but the specific catalysts fall into a few categories.
+
+**Supply-side factors** include OPEC+ production decisions, U.S. shale output, and supply disruptions from geopolitical events. When OPEC announces production cuts, prices tend to rise. When U.S. producers ramp up drilling, prices tend to fall. Unplanned outages — a pipeline attack, a hurricane hitting the Gulf of Mexico, or sanctions on a major producer — can cause sudden spikes.
+
+**Demand-side factors** include global economic growth, Chinese industrial activity, seasonal patterns, and transportation demand. Strong economic data tends to support oil prices, while recession fears or weak manufacturing numbers push them lower. Summer driving season and winter heating demand create predictable seasonal patterns.
+
+**Inventory data** is one of the most important weekly catalysts. The U.S. Energy Information Administration (EIA) releases its Weekly Petroleum Status Report every Wednesday at 10:30 AM ET. This report shows changes in crude oil inventories, refinery utilization, and product demand. A larger-than-expected inventory draw (less oil in storage) is bullish. A larger-than-expected build (more oil in storage) is bearish. The American Petroleum Institute (API) releases its own estimate on Tuesday evenings, which often sets expectations for the EIA report.
+
+**The U.S. dollar** also plays a role. Since oil is priced in dollars globally, a stronger dollar makes oil more expensive for foreign buyers and tends to weigh on prices, while a weaker dollar supports them.
+
+## Strategies for Trading Oil on Kalshi
+
+Here are the most practical approaches that work well for oil contracts on the platform.
+
+## 1. Trading Around the EIA Report
+
+The weekly EIA inventory report is the single most reliable short-term catalyst for oil prices. The data comes out on a fixed schedule, and the market reaction is usually immediate and directional.
+
+The strategy is to compare the market consensus (what analysts expect) with leading indicators — the API estimate from the night before, refinery maintenance schedules, import and export data, and seasonal trends. If the evidence suggests inventories will draw down more than expected, positioning in Yes contracts on a higher oil price threshold before the report can capture the move.
+
+The key is having a framework for what the data means before it drops. If you are scrambling to interpret the numbers after the release, you are already behind the traders who have done the homework.
+
+## 2. OPEC+ Meeting Plays
+
+OPEC+ ministerial meetings are scheduled events that can cause large moves in oil prices. The market typically prices in some expectation of the outcome — a production cut, an increase, or a rollover of existing quotas — but OPEC has a history of surprises.
+
+The approach is to track the pre-meeting signals: comments from Saudi Arabia's energy minister, reports from OPEC delegates, and the geopolitical dynamics between member states. If the market is pricing in a rollover but the signals suggest a deeper cut, there is an opportunity to buy Yes contracts on higher price thresholds before the announcement.
+
+OPEC meetings also create volatility in the days leading up to the decision, which can be traded even without a strong directional view. Contracts near the current price will be most sensitive to any shift in expectations.
+
+## 3. Geopolitical Risk Premium Trading
+
+Oil carries a geopolitical risk premium — a portion of the price that reflects the possibility of supply disruptions from conflict, sanctions, or political instability. When tensions escalate in the Middle East, the Strait of Hormuz, or among major producers like Russia, oil prices tend to spike.
+
+The strategy here is twofold. First, when you identify a rising geopolitical risk that the market has not fully priced in, you can buy Yes contracts on higher thresholds. Second, when a geopolitical scare fades without an actual supply disruption, prices tend to give back the risk premium — creating an opportunity to buy No contracts as the market normalizes.
+
+This strategy requires staying closely tuned to global news and having a realistic sense of how likely a disruption actually is. Markets tend to overreact to dramatic headlines and underreact to slow-building structural risks.
+
+## 4. Macro-Driven Positioning
+
+Oil is deeply connected to the broader economic cycle. If you have a view on where the economy is headed — recession or expansion, strong or weak growth — oil contracts are one of the most direct ways to express that view.
+
+A recession trade, for example, might involve buying No contracts on oil at or near current price levels, anticipating that weakening demand will push prices lower. A reflation trade might involve buying Yes contracts on higher thresholds, expecting that strong economic activity will support demand and tighten supplies.
+
+This strategy works on longer-dated contracts where the expiration gives the macro thesis time to play out. It pairs well with Kalshi contracts on related outcomes — GDP growth, inflation, and Fed rate decisions — allowing you to build a coherent portfolio around a single macro view.
+
+## 5. Seasonal Patterns and Mean Reversion
+
+Oil prices follow seasonal patterns driven by physical demand. Gasoline demand typically peaks during the summer driving season (May through September), while heating oil demand picks up in winter. Refinery maintenance seasons in the spring and fall can temporarily reduce product output and affect crude demand.
+
+Traders who understand these patterns can position ahead of predictable demand shifts. Buying Yes contracts on higher prices ahead of the summer driving season, or anticipating a post-summer pullback, uses the structural rhythms of the oil market to inform timing.
+
+Mean reversion is also a factor. When oil prices spike or crash on a short-term catalyst but the fundamental supply-demand picture has not changed dramatically, prices tend to revert toward their prior range. This creates opportunities to fade extreme moves with an appropriate time horizon.
+
+## Building Your Edge
+
+The traders who do well with oil contracts on Kalshi share a few common habits.
+
+**They follow the data calendar.** EIA reports, OPEC meetings, jobs numbers, GDP releases, and Fed decisions all affect oil. Knowing what is coming and when is the foundation of every strategy.
+
+**They read the physical market.** Oil is a physical commodity, and the best signal often comes from physical market data — storage levels, tanker traffic, refinery runs, and crack spreads. This data is publicly available and gives a more complete picture than price charts alone.
+
+**They size positions relative to conviction.** Oil can be volatile, and even well-reasoned trades can go against you in the short term. Experienced traders allocate more capital to higher-conviction setups and keep position sizes manageable on speculative plays.
+
+**They use Kalshi's structure to their advantage.** The defined-risk nature of Kalshi contracts means you can take asymmetric bets — buying cheap contracts on unlikely but possible scenarios — without risking more than a few dollars per contract. A 10-cent contract that pays $1.00 if oil spikes on a supply disruption is a very different risk profile than a leveraged futures position.
+
+## Getting Started
+
+If you are new to oil trading on Kalshi, start by watching. Follow the EIA reports for a few weeks without trading. Track how oil prices react to the data and how Kalshi contract prices move in response. Build a feel for what is already priced in versus what represents a genuine surprise.
+
+When you are ready to trade, start with the catalysts you understand best. If you follow OPEC closely, start there. If you are good at reading U.S. economic data, focus on the demand side. The edge comes from knowing one part of the oil market better than the average participant — not from trying to master everything at once.
+
+Oil is one of the deepest, most liquid, and most information-rich markets in the world. On Kalshi, you can trade it with capped risk, no margin, and clear resolution rules. That combination makes it one of the best markets on the platform for traders who are willing to do the work.`,
+  },
+  {
     slug: "sports-trading-prediction-markets-legal-battle",
     title: "The Sports Trading Battle: What Prediction Markets Are Up Against",
     description:
