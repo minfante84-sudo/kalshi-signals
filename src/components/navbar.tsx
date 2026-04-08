@@ -27,7 +27,7 @@ export function Navbar() {
         </Link>
         <nav className="flex items-center gap-4 sm:gap-6 text-sm">
           <Link
-            href="/"
+            href="/signals"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Signals
