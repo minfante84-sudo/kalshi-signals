@@ -64,12 +64,6 @@ export default function AboutPage() {
               the latest markets listed on Kalshi. Get in early on fresh events
               before they attract heavy volume.
             </li>
-            <li>
-              <strong className="text-foreground">Widest Spreads</strong> —
-              Find markets with the largest gap between bid and ask prices.
-              Wide spreads can highlight illiquid markets or potential
-              opportunities for limit orders.
-            </li>
           </ul>
         </div>
       </section>
