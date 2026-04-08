@@ -9,6 +9,129 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-trade-the-masters-on-kalshi",
+    title: "How to Trade The Masters on Kalshi",
+    description:
+      "A guide to trading golf's biggest tournament on Kalshi — from understanding how Masters contracts work to building strategies around player form, course history, and live momentum.",
+    date: "2026-04-08",
+    readingTime: "8 min read",
+    content: `The Masters is the most prestigious tournament in golf — and one of the most exciting sports events to trade on Kalshi. Every April, Augusta National delivers dramatic finishes, unexpected collapses, and momentum swings that create real opportunities for traders who know what to look for. Here is how to approach it.
+
+## Why The Masters Is Great for Trading
+
+The Masters stands apart from other golf tournaments for several reasons that matter to traders.
+
+First, the field is small. Only about 90 players tee it up at Augusta, compared to 144 or more at a typical PGA Tour event. A smaller field means each player holds a larger share of the probability, making individual matchups and outright winner contracts easier to analyze.
+
+Second, Augusta National is one of the most course-specific venues in professional golf. It rewards a particular skill set — long, high draws off the tee, precise iron play into elevated greens, elite putting on some of the fastest and most contoured surfaces in the world, and the ability to score on the par-5s. Players who fit the course tend to perform well repeatedly, while players who do not fit it struggle regardless of their overall ranking.
+
+Third, The Masters creates massive public interest and trading volume. That volume means tighter spreads and more liquid contracts on Kalshi, which is exactly what you want when you are trying to enter and exit positions efficiently.
+
+## How Masters Contracts Work on Kalshi
+
+Kalshi typically offers several types of contracts around The Masters.
+
+**Outright winner contracts** ask whether a specific player will win the tournament. These are priced based on the market's implied probability of that player winning. A favorite might trade at 12 to 15 cents, while a longshot might trade at 1 to 3 cents. If your player wins, the contract pays $1.00.
+
+**Head-to-head matchups** ask which of two players will finish with a better tournament result. These are often priced closer to 50/50, depending on how the market views the two players relative to each other.
+
+**Top finish contracts** ask whether a player will finish in the top 5, top 10, or top 20. These have higher implied probabilities than outright winner contracts, which means they cost more but resolve Yes more often.
+
+**Cut and made-cut contracts** ask whether a player will make or miss the 36-hole cut. These are binary outcomes that resolve after Friday's second round.
+
+The key principle across all of these is the same: you are buying a contract at a price that reflects the market's current probability estimate, and you profit when the actual outcome differs from what the market expected.
+
+## What Moves Masters Contracts
+
+Understanding what drives price changes during Masters week is essential for finding trading opportunities.
+
+**Pre-tournament form** is the most obvious factor. How a player has been performing in recent weeks — particularly at similar courses — shapes expectations heading into Thursday. A player who has won twice in the last month will be priced higher than their historical Masters performance might suggest, and vice versa.
+
+**Course history at Augusta** matters more here than at almost any other tournament. Players like those who have consistently finished in the top 10 at Augusta carry a premium, and for good reason. Augusta rewards experience and familiarity in ways that most courses do not — knowing where to miss, how putts break, and how the course plays differently depending on pin positions and wind direction.
+
+**Weather and course conditions** significantly affect which players benefit. A soft, calm Augusta favors long hitters who can attack pins. A firm, windy Augusta favors precision players and experienced veterans who know how to manage the course defensively. Checking the forecast heading into tournament week can help you identify which players are set up well and which are disadvantaged.
+
+**Live scoring and momentum** create the most dramatic price swings during the tournament itself. A player who birdies three of the first five holes on Thursday will see their outright winner price jump, while a player who double-bogeys the 12th on Sunday will see their contracts collapse. These real-time moves are where active traders find the most opportunity.
+
+## Strategies for Trading The Masters on Kalshi
+
+Here are the approaches that work best for this specific tournament.
+
+## 1. Course Fit Analysis
+
+This is the foundational strategy for any Masters trading. Before the tournament begins, identify players whose games fit Augusta National and compare their contract prices to what you believe their actual probability of contending should be.
+
+The Augusta skill set includes: driving distance (the course is over 7,500 yards), the ability to hit a draw (the course favors right-to-left ball flight on many key holes), scrambling and short game (the greens are severely sloped and require delicate touch), and par-5 scoring (eagles and birdies on the par-5s are where contenders separate themselves from the field).
+
+Players who rank highly in these categories but are not household names often trade at lower prices than their actual probability warrants. Conversely, popular players who are well-known but do not fit the course may be overpriced because casual bettors drive up their contracts.
+
+## 2. Weather-Based Positioning
+
+Augusta's conditions change meaningfully based on weather, and the forecast is available days in advance. If rain is expected to soften the course, long hitters who can carry the ball high gain an advantage. If the course is expected to be firm and fast with wind, players who keep the ball low and control trajectory have the edge.
+
+The strategy is to position before the market fully adjusts to the forecast. Weather information is publicly available, but many traders do not update their analysis until the tournament actually starts. By the time conditions are obvious — a swirling wind on the first tee — the prices have already moved.
+
+## 3. Live Round Trading
+
+The most active trading opportunity during The Masters comes from following the action in real time and reacting to scoring runs.
+
+Augusta's back nine on Sunday is famous for producing dramatic swings. Amen Corner — holes 11, 12, and 13 — is where tournaments are won and lost. A player who navigates Amen Corner cleanly on Sunday while the leaders struggle can see their odds shift massively in the span of 30 minutes.
+
+The approach is to watch the leaderboard and identify situations where the market has not fully caught up to what is happening on the course. If a contender makes a double bogey but still has the par-5 15th and the scorable 16th ahead, their contracts might drop more than the situation warrants. If a player is quietly putting together a bogey-free round while others stumble, their contracts might still be priced too low.
+
+This requires being engaged and watching the tournament. The traders who profit most from live Masters trading are the ones who understand golf well enough to assess what a score on a particular hole actually means for the rest of the round.
+
+## 4. Matchup Betting
+
+Head-to-head matchups are often the best risk-reward opportunities during The Masters because they eliminate the low-probability nature of outright winner bets.
+
+Instead of needing a specific player to win the whole tournament, you just need Player A to beat Player B. This is a much higher-probability event and allows you to apply your analysis more precisely.
+
+The key to matchup betting is finding mismatches. If one player fits Augusta much better than the other but the market prices them close to even, that is an edge. If one player has a strong recent form advantage but the other has significantly better Augusta history, the matchup becomes a judgment call about which factor matters more this week.
+
+Matchups are also useful for hedging. If you hold an outright winner contract on a player, you can trade matchups involving other contenders to manage your exposure as the tournament unfolds.
+
+## 5. Fade the Public Favorites
+
+The Masters draws more casual attention than almost any other golf tournament. That means public favorites — typically the biggest names in golf and recent major winners — tend to be overpriced relative to their actual probability of winning.
+
+The field at Augusta is stacked with elite players, and even the best golfer in the world has something like a 10 to 15 percent chance of winning any given major. But public enthusiasm can push a top player's contract to a price that implies 18 or 20 percent, which is too high.
+
+The strategy is not to bet against great players blindly but to recognize when the market price exceeds a realistic probability. If you believe the true probability is 12 percent but the contract is priced at 18 cents, buying No is a positive-expected-value trade even though the player might still win.
+
+## Key Moments to Watch
+
+Certain points during Masters week create the biggest trading opportunities.
+
+**Wednesday evening** is when final practice round information, pin position expectations, and weather updates crystallize. Contracts often shift as the market digests this information.
+
+**Thursday and Friday mornings** are when the tee time draw matters. Players in the early wave on Thursday sometimes get better conditions than the afternoon wave, or vice versa. This wave advantage can affect cut and first-round leader contracts.
+
+**Saturday afternoon** — known as Moving Day — is when the leaderboard takes shape for Sunday. Players who surge on Saturday see their contracts jump, and Sunday contention becomes clearer.
+
+**Sunday back nine** is the climax. From the 10th hole onward, every shot can swing contract prices. Amen Corner and the closing stretch produce the most volatile price action of the entire tournament.
+
+## Building Your Edge
+
+The traders who do well on Masters contracts tend to share a few habits.
+
+**They study Augusta specifically.** General golf knowledge is not enough. Understanding which holes yield the most birdies, which greens are most penalizing, and how scoring patterns shift based on conditions is essential.
+
+**They watch the tournament.** Live scoring data is valuable, but watching the actual broadcast gives you context that a leaderboard alone does not — how a player is swinging, whether they look confident or shaky, and how the course is playing in real time.
+
+**They manage position sizes.** Golf is inherently unpredictable. Even the best pre-tournament analysis can be undone by a single bad tee shot or an unlucky bounce off a tree. Sizing positions appropriately and spreading risk across multiple contracts is how experienced traders protect themselves.
+
+**They act on information quickly.** Masters contracts move fast, especially during live rounds. When you see an opportunity — a mispricing after a key hole or a weather shift — acting quickly is the difference between capturing value and watching it disappear.
+
+## Getting Started
+
+If you have not traded golf on Kalshi before, The Masters is actually a great place to start. The tournament is widely covered, the field is small enough to research thoroughly, and the four-day format gives you multiple opportunities to observe and trade.
+
+Start by picking a handful of players you know and researching their Augusta history, current form, and game characteristics. Compare what you find to their contract prices on Kalshi. If you see a gap between your assessment and the market price, you have found a potential trade.
+
+The Masters is appointment viewing for golf fans. For Kalshi traders, it is appointment trading — four days of high-drama, high-volume markets where knowledge of the sport and the course can translate directly into an edge.`,
+  },
+  {
     slug: "how-to-trade-oil-markets-on-kalshi",
     title: "How to Play the Oil Market on Kalshi",
     description:
