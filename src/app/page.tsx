@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Activity, DollarSign, TrendingUp, Newspaper, Flame, Sparkles } from "lucide-react";
+import { Activity, DollarSign, TrendingUp, Newspaper, Flame, Sparkles, Calendar } from "lucide-react";
 
 const pages = [
   {
@@ -22,6 +22,13 @@ const pages = [
     icon: Newspaper,
     description:
       "Analysis, guides, and insights on prediction market trading strategies, market trends, and Kalshi tips.",
+  },
+  {
+    title: "Long-Term Markets",
+    href: "/long-term-markets",
+    icon: Calendar,
+    description:
+      "The most popular markets closing more than a week from now. Find high-volume, longer-dated markets with deeper liquidity.",
   },
   {
     title: "Trending",

@@ -51,6 +51,12 @@ export function Navbar() {
             Trending
           </Link>
           <Link
+            href="/long-term-markets"
+            className="hidden sm:inline text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Long-Term
+          </Link>
+          <Link
             href="/new-markets"
             className="hidden sm:inline text-muted-foreground transition-colors hover:text-foreground"
           >
@@ -79,6 +85,13 @@ export function Navbar() {
             </button>
             {open && (
               <div className="absolute right-0 top-full mt-2 w-36 rounded-md border border-border bg-background shadow-lg z-50">
+                <Link
+                  href="/long-term-markets"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground"
+                >
+                  Long-Term
+                </Link>
                 <Link
                   href="/new-markets"
                   onClick={() => setOpen(false)}
