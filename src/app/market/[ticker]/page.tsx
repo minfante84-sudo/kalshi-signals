@@ -31,12 +31,24 @@ export async function generateMetadata({
   }
 }
 
+const backLinks: Record<string, { href: string; label: string }> = {
+  signals: { href: "/signals", label: "Signals" },
+  popular: { href: "/popular", label: "Popular Markets" },
+  trending: { href: "/trending", label: "Trending" },
+  "new-markets": { href: "/new-markets", label: "New Markets" },
+  "long-term-markets": { href: "/long-term-markets", label: "Long-Term Markets" },
+};
+
 export default async function MarketDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ ticker: string }>;
+  searchParams: Promise<{ from?: string }>;
 }) {
   const { ticker } = await params;
+  const { from } = await searchParams;
+  const back = (from && backLinks[from]) || { href: "/", label: "Home" };
 
   let market, orderbook, trades;
   let kalshiUrl = "https://kalshi.com";
@@ -90,11 +102,11 @@ export default async function MarketDetailPage({
   return (
     <div className="space-y-6">
       <Link
-        href="/"
+        href={back.href}
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Signals
+        Back to {back.label}
       </Link>
 
       <div className="space-y-3">

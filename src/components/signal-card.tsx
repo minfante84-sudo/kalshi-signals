@@ -29,7 +29,7 @@ export function SignalCard({ signal }: { signal: MarketSignal }) {
         : "bg-muted text-muted-foreground";
 
   return (
-    <Link href={`/market/${market.ticker}`}>
+    <Link href={`/market/${market.ticker}?from=signals`}>
       <Card className="transition-colors hover:bg-accent/50 cursor-pointer">
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between gap-2">

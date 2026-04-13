@@ -117,7 +117,7 @@ export function LongTermTable({ markets }: { markets: KalshiMarket[] }) {
         {paged.map((market) => (
           <div key={market.ticker}>
             <Link
-              href={`/market/${market.ticker}`}
+              href={`/market/${market.ticker}?from=long-term-markets`}
               className="block rounded-lg border p-4 hover:bg-accent/50 active:bg-accent/70 transition-colors"
             >
               <p className="font-medium text-sm leading-snug">{formatTitle(market.title)}</p>
@@ -157,7 +157,7 @@ export function LongTermTable({ markets }: { markets: KalshiMarket[] }) {
             {paged.map((market) => (
               <TableRow key={market.ticker} className="cursor-pointer hover:bg-accent/50">
                 <TableCell className="max-w-[300px]">
-                  <Link href={`/market/${market.ticker}`} className="block">
+                  <Link href={`/market/${market.ticker}?from=long-term-markets`} className="block">
                     <p className="font-medium text-sm truncate">{formatTitle(market.title)}</p>
                   </Link>
                 </TableCell>
