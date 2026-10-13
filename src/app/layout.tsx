@@ -65,6 +65,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   other: {
+    "google-adsense-account": "ca-pub-6706124830973350",
     c9b7519defe2afdc74110756904d4ff32c843f4d: "c9b7519defe2afdc74110756904d4ff32c843f4d",
   },
 };
@@ -77,6 +78,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6706124830973350"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-L2SG61SW32"
