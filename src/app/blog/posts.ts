@@ -9,6 +9,119 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "how-to-trade-the-2026-senate-midterms-on-kalshi",
+    title: "How to Play the 2026 Senate Midterms on Kalshi",
+    description:
+      "A practical guide to trading the 2026 Senate elections on Kalshi — the markets available, the races that decide control, and strategies for polls, election night, and everything in between.",
+    date: "2026-10-15",
+    readingTime: "9 min read",
+    content: `With the November 3 midterms less than three weeks away, Senate markets are some of the most active contracts on Kalshi. Thirty-five seats are on the ballot, control of the chamber is genuinely in play, and new polls, ad spending, and campaign news move prices every day. That is a lot of opportunity for traders who know how these markets work and what actually drives them. Here is how to approach it.
+
+## The Big Picture: The Math of Senate Control
+
+Republicans currently hold the Senate 53 to 47. Because the vice president breaks ties, Democrats need a net gain of four seats to take the majority. That number is the starting point for everything else in this guide.
+
+A net gain of four means Democrats have to flip Republican-held seats while also holding the competitive seats they are defending. Every Democratic loss raises the bar by one. That makes the Senate a portfolio problem rather than a single bet: the chamber-control price is really a combination of a dozen or so individual race probabilities, and those races are connected to each other through the national environment.
+
+Heading into the final stretch, the national environment has shifted toward Democrats. President Trump's approval ratings are near historic lows, views of the economy are negative, and polling has shown Democrats competitive in states that have not been close in years. Kalshi's Senate control market reflected that shift, with Democrats moving ahead in September. But the Republican map advantage is real, and many forecasters still describe a Democratic majority as an uphill climb. That tension is exactly what makes the market interesting.
+
+## The Senate Markets on Kalshi
+
+Kalshi offers several ways to trade the Senate, and each one answers a different question.
+
+**Chamber control** is the headline market: which party will control the Senate after the election. This is the most liquid Senate contract and the one most sensitive to the national environment.
+
+**Individual race markets** ask which party, or which candidate, will win a specific state's Senate seat. These let you trade your view on a single race without taking a position on the whole chamber.
+
+**Seat count and margin markets** ask how many seats a party will hold, or ranges of outcomes. These are useful when your view is about the size of a wave rather than simply who wins.
+
+**Balance-of-power markets** ask about outcomes across both chambers, such as Democrats winning the House while Republicans keep the Senate. These capture the split-control scenarios many forecasters consider plausible.
+
+Before trading any of these, read the contract rules. Election contracts resolve on specific criteria — how ties and the vice president's vote are treated, how independents who caucus with a party are counted, what source is used to determine the winner, and when the market settles. Two contracts that sound identical can resolve differently, and that difference occasionally creates a pricing gap of its own.
+
+## The Races That Decide Control
+
+You do not need an opinion on all 35 races. Most are not competitive. The Senate will be decided by roughly ten seats, and these are the ones worth studying.
+
+**North Carolina** is the open seat left by Thom Tillis's retirement, and it has been rated the seat most likely to flip for much of the year. Former Governor Roy Cooper, a Democrat, faces Republican Michael Whatley. Because the market already treats this as a likely Democratic pickup, it is less about finding value in the winner and more about whether it serves as an early signal on election night.
+
+**Maine** features Republican incumbent Susan Collins, who has outperformed her polls before. That history makes Maine a classic test of whether you trust the polling or the track record.
+
+**Ohio** has moved up the target list as Democrat Sherrod Brown attempts a comeback in a state Trump won by double digits. Heavy Republican ad spending against Brown is a sign both sides see a real race.
+
+**Texas** has Democrats hopeful about James Talarico against Ken Paxton. A nine-figure ad campaign against Talarico tells you Republicans are taking the race seriously. Texas has a long history of tantalizing Democrats in polls and disappointing them on election day, which is exactly the kind of dynamic markets can misprice in either direction.
+
+**Alaska, Kansas, and New Hampshire** round out the expanded battleground. Kansas has not elected a Democratic senator in more than 90 years, so any meaningful Democratic price there reflects how far the national environment has moved.
+
+**Georgia and Michigan** are the key Democratic defenses. Georgia features incumbent Jon Ossoff and is one of Republicans' best pickup opportunities. Michigan is an open seat in a state decided by narrow margins in recent cycles. If Democrats lose either, their path to a majority narrows sharply.
+
+## What Moves Senate Markets
+
+**Polls** are the most visible driver, but individual polls are noisy. A single survey showing a big lead often moves prices more than it should. Polling averages, and the quality and methodology of the pollsters behind them, matter far more than any one result.
+
+**The national environment** moves every race at once. Presidential approval, the generic congressional ballot, economic sentiment, and major news events shift all competitive races in the same direction. This correlation is the single most important concept in Senate trading.
+
+**Money and ad spending** signal where the parties think races are close. When a party or super PAC suddenly reserves millions in a state that was supposed to be safe, it is telling you something about its internal polling.
+
+**Early vote data** becomes available in many states during the final weeks. It is easy to over-read, because early voting patterns have changed significantly across recent cycles, but sharp changes in turnout composition can be meaningful.
+
+**Election night returns** drive the fastest moves of all. Counties report at different times, mail ballots and in-person votes are counted in different orders, and early returns often look very different from final results.
+
+## Strategies for Trading the Senate on Kalshi
+
+## 1. Think in Correlations, Not Isolated Races
+
+The most common mistake in Senate trading is treating each race as independent. They are not. If the polls are systematically underestimating one party, they are probably doing it in most competitive states at the same time, as happened in several recent cycles.
+
+This has practical consequences. If you hold Democratic positions in Ohio, Texas, and Maine, you do not have three separate bets — you have one large bet on the national environment and polling accuracy. Size your positions with that in mind. And when you compare the chamber-control price to the individual race prices, remember that control should reflect correlated outcomes, not simply independent coin flips multiplied together.
+
+## 2. Compare Market Prices to Forecasts and Polling Averages
+
+Forecasting models, polling averages, and expert race ratings are all freely available. When a Kalshi race price diverges significantly from the consensus of these sources, ask why. Sometimes the market knows something — a late scandal, an internal poll, early vote data. Sometimes it is simply reacting to one noisy poll or to partisan enthusiasm.
+
+Partisan money is a real factor in election markets. Traders who strongly support one candidate sometimes push prices beyond what the evidence justifies. Races with a passionate national following are the most likely to be mispriced this way.
+
+## 3. Look for Value in the Long-Shot Races
+
+Contracts on the reach races — Texas, Kansas, and Alaska for Democrats, or the Democratic-held defenses for Republicans — are inexpensive, and Kalshi's capped-risk structure makes them attractive as small, asymmetric positions. If a wave is larger than expected, several of these can pay at once.
+
+The other side of this trade is just as important. Long shots tend to be overpriced in prediction markets because traders enjoy buying lottery tickets. If a 15-cent contract really represents a 5 percent chance, buying the No side is the better trade. Your job is to decide which side of that gap you are on.
+
+## 4. Trade the Range, Not Just the Winner
+
+Seat-count and margin markets let you express a more precise view. If you believe the Senate will be decided by a single seat in either direction, a range contract can be a cleaner way to bet on that than picking a party. If you expect a wave, higher seat-count ranges can offer better payouts than the control market.
+
+Balance-of-power markets work the same way. If you think a split Congress is the most likely outcome, a single contract lets you trade that directly instead of taking two separate positions.
+
+## 5. Prepare for Election Night
+
+Election night is where prices move fastest, and preparation is the edge. Before November 3, know when polls close in each competitive state, which counties report first, and whether early returns in each state usually lean toward one party. A state that counts mail ballots first will often show an early lead that shrinks later, and vice versa. Traders who panic at early returns create opportunities for traders who know what to expect.
+
+Also know which races may not be decided that night. Georgia requires a majority to win, so a close race can head to a runoff. Maine and Alaska use ranked-choice voting, which can delay results if no candidate clears 50 percent on the first count. Close races in any state can face recounts. A contract you expected to settle quickly might stay open for weeks.
+
+## 6. Manage Your Exposure
+
+With every competitive race resolving around the same date, it is easy to end up with most of your account in correlated positions that all move at the same moment. Decide in advance how much of your bankroll you want exposed to the Senate as a whole. Remember too that you do not have to hold to resolution — you can take profits or cut losses before election day as prices move.
+
+## Building Your Edge
+
+The traders who do best with election markets tend to share a few habits.
+
+**They follow quality data, not headlines.** Polling averages, early vote reports, campaign finance filings, and ad reservation data are more useful than any single news story.
+
+**They know the rules.** Understanding exactly how each contract resolves — and when — prevents expensive surprises.
+
+**They separate their politics from their trades.** The question is not who you want to win. It is whether the price is right. Some of the best opportunities come from betting against the outcome you are rooting for.
+
+**They watch where the money goes.** Large trades often signal conviction from well-informed participants. Tracking the biggest Senate trades on Kalshi Signals is a useful way to see where serious money is moving as the election approaches.
+
+## Getting Started
+
+If you are new to election trading, pick two or three races you understand well — perhaps your home state or a race you have followed closely — and compare their Kalshi prices with polling averages and forecasts. Start with small positions and build a feel for how prices react to new polls and news.
+
+Midterm Senate elections only come around every two years, and this cycle has more competitive races than most. With capped risk, clear resolution rules, and deep liquidity, Kalshi is one of the best ways to put your read on the election to the test.`,
+  },
+  {
     slug: "how-to-trade-the-masters-on-kalshi",
     title: "How to Trade The Masters on Kalshi",
     description:
