@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Learn about prediction markets, trading strategies, and how to use market data to make better-informed decisions.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {
@@ -28,7 +29,7 @@ export default function BlogPage() {
           <Link key={post.slug} href={`/blog/${post.slug}`} className="block">
             <article className="rounded-lg border border-border p-6 space-y-2 transition-colors hover:border-chart-1/50 hover:bg-accent/30">
               <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                <time>{post.date}</time>
+                <time dateTime={post.date}>{post.date}</time>
                 <span>{post.readingTime}</span>
               </div>
               <h2 className="font-semibold text-foreground">{post.title}</h2>

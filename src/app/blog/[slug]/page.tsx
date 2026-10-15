@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { posts, getPost } from "../posts";
 
+const siteUrl = "https://kalshisignals.net";
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -19,6 +21,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `${siteUrl}/blog/${post.slug}`,
+      type: "article",
+      publishedTime: post.date,
+    },
   };
 }
 
@@ -27,8 +37,24 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPost(slug);
   if (!post) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    url: `${siteUrl}/blog/${post.slug}`,
+    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
+    author: { "@type": "Organization", name: "Kalshi Signals", url: siteUrl },
+    publisher: { "@type": "Organization", name: "Kalshi Signals", url: siteUrl },
+  };
+
   return (
     <article className="mx-auto max-w-3xl space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div>
         <Link
           href="/blog"
@@ -39,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
         </Link>
         <h1 className="text-xl sm:text-2xl font-bold">{post.title}</h1>
         <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">
-          <time>{post.date}</time>
+          <time dateTime={post.date}>{post.date}</time>
           <span>{post.readingTime}</span>
         </div>
       </div>
